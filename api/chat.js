@@ -1,11 +1,27 @@
-module.exports = async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+// ══════════════════════════════════════════
+// Clube Meta — Proxy seguro para Claude API
+// 
+// COMO USAR:
+// 1. Cole sua chave na linha abaixo onde está SUA_CHAVE_AQUI
+// 2. Suba este arquivo no GitHub dentro da pasta /api/
+// 3. O Vercel transforma automaticamente em função serverless
+// ══════════════════════════════════════════
 
-  const apiKey = process.env.ANTHROPIC_KEY;
-  if (!apiKey) {
-    return res.status(500).json({ error: 'API key not configured' });
+module.exports = async function handler(req, res) {
+
+  // ✅ COLE SUA NOVA CHAVE AQUI:
+  const API_KEY = 'SUA_CHAVE_AQUI';
+
+  // Permite chamadas do seu domínio
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') return res.status(200).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  if (!API_KEY || API_KEY === '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') {
+    return res.status(500).json({ error: 'Chave da API não configurada' });
   }
 
   try {
@@ -13,7 +29,7 @@ module.exports = async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
+        'x-api-key': API_KEY,
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify(req.body)
@@ -23,6 +39,6 @@ module.exports = async function handler(req, res) {
     return res.status(response.status).json(data);
 
   } catch (err) {
-    return res.status(500).json({ error: 'Proxy error' });
+    return res.status(500).json({ error: 'Erro no proxy', detail: err.message });
   }
-}
+};
