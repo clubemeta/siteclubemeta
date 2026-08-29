@@ -24,7 +24,7 @@
   --bg3:#e8ecf0;
   --bd:rgba(0,0,0,.09);
   --txt:#0d1117;
-  --muted:#5c6672;
+  --muted:#3d4a52;
   --red:#ff5050;
   --f:'Inter',sans-serif;
   --fd:'Syne',sans-serif;
@@ -47,7 +47,7 @@ button{cursor:pointer;border:none;background:none;font-family:inherit}
 .tag::before{content:'';width:20px;height:2px;background:var(--c);border-radius:1px}
 .h2{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.1}
 .h2 em{color:var(--c);font-style:normal}
-.lead{font-size:clamp(.95rem,1.5vw,1.05rem);color:var(--muted);line-height:1.75;font-weight:400;max-width:560px}
+.lead{font-size:clamp(.95rem,1.5vw,1.05rem);color:var(--muted);line-height:1.75;font-weight:450;max-width:560px}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.on{opacity:1;transform:translateY(0)}
 
@@ -59,7 +59,7 @@ nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(8,153,178,.4)}50%{box-shadow:0 0 0 6px transparent}}
 .logo span{color:var(--c)}
 .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{font-size:.85rem;font-weight:500;color:#4a5568;transition:color .2s}
+.nav-links a{font-size:.85rem;font-weight:500;color:#2d3748;transition:color .2s}
 .nav-links a:hover{color:var(--txt)}
 .nav-cta{background:var(--c)!important;color:#000!important;font-weight:700!important;padding:9px 20px;border-radius:8px;font-size:.82rem!important;letter-spacing:.02em;transition:background .2s,transform .2s!important}
 .nav-cta:hover{background:var(--c2)!important;transform:translateY(-1px)}
@@ -124,7 +124,7 @@ section{padding:clamp(60px,8vw,100px) 0}
 .dif-row:hover{border-color:rgba(8,153,178,.3)}
 .dif-ico{width:38px;height:38px;border-radius:9px;background:rgba(8,153,178,.1);border:1px solid rgba(8,153,178,.2);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
 .dif-info h4{font-size:.9rem;font-weight:700;margin-bottom:3px}
-.dif-info p{font-size:.8rem;color:var(--muted);line-height:1.55}
+.dif-info p{font-size:.82rem;color:#3d4a52;line-height:1.55}
 /* dashboard */
 .dash{background:#fff;border:1px solid var(--bd);box-shadow:0 2px 16px rgba(0,0,0,.06);border-radius:16px;padding:28px;position:relative;overflow:hidden}
 .dash::before{content:'';position:absolute;top:0;inset-inline:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),transparent)}
@@ -159,7 +159,7 @@ section{padding:clamp(60px,8vw,100px) 0}
 .cc-name{font-weight:700;font-size:.95rem;letter-spacing:-.01em;margin-bottom:5px}
 .cc-name a{transition:color .2s}
 .cc-name a:hover{color:var(--c)}
-.cc-desc{font-size:.78rem;color:var(--muted);line-height:1.55;flex:1}
+.cc-desc{font-size:.8rem;color:#3d4a52;line-height:1.6;flex:1;font-weight:450}
 .cc-result{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd);font-size:.75rem;font-weight:600;color:var(--c);display:flex;align-items:center;gap:6px}
 .cc-result::before{content:'↑';font-size:.85rem}
 
@@ -186,7 +186,7 @@ section{padding:clamp(60px,8vw,100px) 0}
 .srv.hot::before{content:'MAIS BUSCADO';position:absolute;top:16px;right:16px;font-size:.6rem;font-weight:800;letter-spacing:.1em;color:var(--c);background:rgba(8,153,178,.12);border:1px solid rgba(8,153,178,.2);padding:3px 9px;border-radius:4px}
 .srv-ico{font-size:1.8rem;margin-bottom:16px;display:block}
 .srv-name{font-family:var(--fd);font-weight:700;font-size:1.05rem;letter-spacing:-.02em;margin-bottom:10px}
-.srv-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
+.srv-desc{font-size:.84rem;color:#3d4a52;line-height:1.65}
 .srv-link{display:inline-flex;align-items:center;gap:5px;margin-top:20px;font-size:.8rem;font-weight:600;color:var(--c);transition:gap .2s}
 .srv:hover .srv-link{gap:9px}
 
@@ -199,7 +199,7 @@ section{padding:clamp(60px,8vw,100px) 0}
 .snum{font-family:var(--fd);font-size:2.2rem;font-weight:800;color:rgba(255,255,255,.05);line-height:1;flex-shrink:0;width:36px;letter-spacing:-.04em;transition:color .3s}
 .step:hover .snum{color:rgba(8,153,178,.3)}
 .scnt h3{font-weight:700;font-size:.95rem;margin-bottom:6px}
-.scnt p{font-size:.82rem;color:var(--muted);line-height:1.65}
+.scnt p{font-size:.84rem;color:#3d4a52;line-height:1.65}
 /* chart card */
 .chart-card{background:#fff;border:1px solid var(--bd);box-shadow:0 2px 16px rgba(0,0,0,.06);border-radius:16px;padding:28px;position:relative;overflow:hidden}
 .chart-card::before{content:'';position:absolute;top:0;inset-inline:0;height:2px;background:linear-gradient(90deg,var(--c),transparent)}
@@ -213,6 +213,31 @@ section{padding:clamp(60px,8vw,100px) 0}
 .bar-lbl{font-size:.65rem;color:var(--muted);font-weight:500}
 .chart-note{margin-top:20px;padding:14px;background:rgba(8,153,178,.07);border:1px solid rgba(8,153,178,.14);border-radius:8px;font-size:.78rem;color:var(--muted);line-height:1.6}
 .chart-note strong{color:var(--c)}
+
+/* ── CASE DE SUCESSO ── */
+.case-card{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);background:#fff;border:1px solid var(--bd);border-radius:20px;padding:clamp(24px,4vw,48px);box-shadow:0 4px 32px rgba(0,0,0,.07);position:relative;overflow:hidden}
+.case-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(90deg,var(--c),var(--c2))}
+.case-client{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.case-avatar{width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0}
+.case-name{font-family:var(--fd);font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+.case-niche{font-size:.75rem;color:var(--muted);margin-top:2px}
+.case-desc{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.case-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(8,153,178,.08);border:1px solid rgba(8,153,178,.2);color:var(--c);font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:100px}
+.case-right{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;background:var(--bg2);border-radius:14px;padding:32px 24px}
+.case-stat-big{}
+.case-num{font-family:var(--fd);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.04em;color:var(--txt);line-height:1}
+.case-stat-big.highlight .case-num{color:var(--c)}
+.case-lbl{font-size:.75rem;color:var(--muted);margin-top:4px;font-weight:500}
+.case-arrow{font-family:var(--fd);font-size:1.4rem;font-weight:800;color:rgba(8,153,178,.4)}
+.case-roas{background:var(--c);color:#fff;border-radius:12px;padding:14px 24px;text-align:center;width:100%}
+.roas-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;opacity:.8;text-transform:uppercase}
+.roas-val{font-family:var(--fd);font-size:2rem;font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.roas-note{font-size:.72rem;opacity:.8;margin-top:2px}
+.case-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.cmetric{background:#fff;border:1px solid var(--bd);border-radius:10px;padding:12px;text-align:center}
+.cmetric-val{font-family:var(--fd);font-size:1.1rem;font-weight:800;letter-spacing:-.03em;color:var(--txt)}
+.cmetric-val span{color:var(--c);font-size:.85rem}
+.cmetric-lbl{font-size:.68rem;color:var(--muted);margin-top:3px;line-height:1.3}
 
 /* ── FUNDADOR ── */
 .founder-grid{display:grid;grid-template-columns:320px 1fr;gap:clamp(32px,5vw,72px);align-items:center}
@@ -277,11 +302,15 @@ section{padding:clamp(60px,8vw,100px) 0}
 .btn-scard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12) 0%,transparent 60%)}
 .btn-scard:hover{background:var(--c2);transform:translateY(-2px);box-shadow:0 14px 44px rgba(8,153,178,.4)}
 .s-guarantee{display:flex;align-items:center;justify-content:center;gap:7px;font-size:.72rem;color:rgba(122,130,128,.55);text-align:center}
+.btn-gmb{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#3c4043;font-family:var(--fd);font-weight:700;font-size:.92rem;padding:14px 28px;border-radius:10px;border:1.5px solid #dadce0;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.btn-gmb:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .divider{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:.78rem;margin-block:24px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--bd)}
 .btn-wpp{display:inline-flex;align-items:center;gap:10px;background:#25d366;color:#fff;font-family:var(--fd);font-weight:700;font-size:.95rem;padding:15px 32px;border-radius:10px;transition:transform .2s,box-shadow .2s}
 .btn-wpp:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,.3)}
 .cta-fine{font-size:.72rem;color:rgba(122,130,128,.4);margin-top:12px}
+.gmb-badge{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:100px;padding:9px 20px;font-size:.8rem;font-weight:600;color:#3c4043;transition:box-shadow .2s,transform .2s;box-shadow:0 1px 6px rgba(0,0,0,.08)}
+.gmb-badge:hover{box-shadow:0 4px 16px rgba(0,0,0,.15);transform:translateY(-1px)}
 
 /* ── FOOTER ── */
 footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(40px,6vw,64px) 0 clamp(24px,3vw,36px)}
@@ -315,6 +344,8 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
   .nav-links{display:none}
   .burger{display:flex}
   .srv-grid{grid-template-columns:1fr}
+  .case-card{grid-template-columns:1fr}
+  .case-arrow{transform:rotate(90deg)}
   .founder-grid{grid-template-columns:1fr;text-align:center}
   .founder-photo{width:200px;height:200px;margin:0 auto}
   .founder-stats{justify-content:center}
@@ -360,6 +391,7 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
     <li><a href="#clientes">Clientes</a></li>
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#fundador">Fundador</a></li>
+    <li><a href="#case">Case</a></li>
     <li><a href="#processo">Processo</a></li>
     <li><a href="#cta" class="nav-cta">Fale Conosco →</a></li>
   </ul>
@@ -447,38 +479,38 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
       <p class="lead" style="max-width:340px;margin-top:0">Resultados reais para negócios reais. Estratégia única para cada mercado.</p>
     </div>
     <div class="clients-grid">
-      <!-- Decorando a Lei Seca: logo PNG — inverte para funcionar no escuro -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-g"><img src="DECORANDO%20A%20LEI%20SECA.png" alt="Decorando a Lei Seca" loading="lazy" style="object-fit:contain;mix-blend-mode:multiply"/></div><div class="cc-badge bd-g">Concursos</div></div><div class="cc-name"><a href="https://www.instagram.com/decorandoaleiseca/" target="_blank">Decorando a Lei Seca</a></div><div class="cc-desc">Referência nacional no estudo da Lei Seca. Criadores do Vade Mecum de Questões. +838K seguidores.</div><div class="cc-result">Escala de cursos e lançamentos</div></div>
-      <!-- Delegado Klipel: foto em uniforme, foco no rosto -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="DELEGADO%20KLIPEL.jpeg" alt="Delegado Klipel" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-b">Carreiras Policiais</div></div><div class="cc-name"><a href="https://www.instagram.com/delegadoklipel/" target="_blank">Delegado Klipel</a></div><div class="cc-desc">Ex-PMMG, Ex-Delta MG e PCRS. Mentoria de alta performance com o Método 5X para Polícias Civis. +47,5K seg.</div><div class="cc-result">Captação e escala de alunos</div></div>
-      <!-- Themas Cursos: foto de escritório/equipe -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="THEMAS%20CURSOS.png" alt="Themas Cursos" loading="lazy" style="object-fit:cover;object-position:center center"/></div><div class="cc-badge bd-b">Concursos</div></div><div class="cc-name"><a href="https://www.instagram.com/themascursos/" target="_blank">Themas Cursos</a></div><div class="cc-desc">Metodologia completa para concursos com planejamento e materiais atualizados. +50,7K seguidores.</div><div class="cc-result">Crescimento de matrículas</div></div>
-      <!-- Themas Cartórios: logo PNG transparente no fundo escuro -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-a"><img src="THEMAS%20CARTORIOS.png" alt="Themas Cartórios" loading="lazy" style="object-fit:contain;mix-blend-mode:multiply"/></div><div class="cc-badge bd-a">Cartórios</div></div><div class="cc-name"><a href="https://www.instagram.com/themascartorios/" target="_blank">Themas Cartórios</a></div><div class="cc-desc">Método 100% focado em aprovação para concursos de cartório. Extensivo 2026. +8,7K seguidores.</div><div class="cc-result">Lançamento e captação de alunos</div></div>
-      <!-- Doctor Prado: logo no fundo escuro do site -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-r"><img src="CLINICA%20DOCTOR%20PRADO.jpeg" alt="Doctor Prado" loading="lazy" style="object-fit:contain"/></div><div class="cc-badge bd-r">Transplante Capilar</div></div><div class="cc-name"><a href="https://www.instagram.com/doctor.prado/" target="_blank">Doctor Prado</a></div><div class="cc-desc">Clínica referência em transplante capilar, lipomastia e emagrecimento. Teresina–PI desde 2019. +13,3K seg.</div><div class="cc-result">Agenda de avaliações preenchida</div></div>
-      <!-- Lorena Canuto: foto profissional, foco no rosto -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="LORENA%20CANUTO.jpg" alt="Dra. Lorena Canuto" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-v">Harmonização Facial</div></div><div class="cc-name"><a href="https://www.instagram.com/lorenacanuto/" target="_blank">Dra. Lorena Canuto</a></div><div class="cc-desc">Estética Regenerativa e Tecnologias. Formação NY University e IMCAS. +44K seguidores. Fortaleza–CE.</div><div class="cc-result">Captação de pacientes escalada</div></div>
-      <!-- Dra. Débora Lee: foto clínica, foco nas pessoas -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="DEBORA%20LEE.jpeg" alt="Dra. Débora Lee" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-r">Harmonização Facial</div></div><div class="cc-name"><a href="https://www.instagram.com/deboralee.01/" target="_blank">Dra. Débora Lee</a></div><div class="cc-desc">Especialista em lábios e harmonização facial. +3.000 pacientes atendidos. Grajaú e Balsas–MA.</div><div class="cc-result">Agenda de pacientes preenchida</div></div>
-      <!-- Dra. Lindaiane: sem foto, avatar texto -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="dra%20lindaine%20campos.jpg" alt="Dra. Lindaiane Campos" loading="lazy" style="object-fit:cover;object-position:center 20%"/></div><div class="cc-badge bd-v">Transplante Capilar</div></div><div class="cc-name"><a href="https://www.instagram.com/dra.lindaiane.campos/" target="_blank">Dra. Lindaiane Campos</a></div><div class="cc-desc">Médica Transplante Capilar. Membro da SBCC. +1.100 cirurgias realizadas. Teresina–PI. +22,2K seg.</div><div class="cc-result">Lista de espera ativa</div></div>
-      <!-- Studio Hair Beauty: logo cover no escuro -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="STUDI%20HAIR%20BEAUTY.jpg" alt="Studio Hair Beauty" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-a">Beleza</div></div><div class="cc-name"><a href="https://www.instagram.com/studiohair_beauty/" target="_blank">Studio Hair Beauty</a></div><div class="cc-desc">Estúdio de beleza com captação local e crescimento de agendamentos via tráfego pago segmentado.</div><div class="cc-result">+Agendamentos com tráfego local</div></div>
-      <!-- Dr. Felipe Duarte: sem foto -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="dr.%20felipe%20duarte.jpg" alt="Dr. Felipe Duarte" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-v">Cirurgia Plástica</div></div><div class="cc-name"><a href="https://www.instagram.com/drfelipeduarte/" target="_blank">Dr. Felipe Duarte</a></div><div class="cc-desc">Cirurgião Plástico e Professor de Cirurgia Plástica. CRM 10.146. +29,2K seguidores. Florianópolis–SC.</div><div class="cc-result">Captação de pacientes qualificados</div></div>
-      <!-- Olimo das Prime: logo dourado — já tem fundo preto próprio -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av" style="border-radius:50%"><img src="OLIMODAS%20.jpg" alt="Olimo das Prime" loading="lazy" style="object-fit:cover;border-radius:50%"/></div><div class="cc-badge bd-a">Varejo Local</div></div><div class="cc-name"><a href="https://www.instagram.com/olimodasprime/" target="_blank">Olimo das Prime</a></div><div class="cc-desc">Varejo local com loja física em Alto Longá–PI e atendimento em Teresina e Altos. Tráfego regional.</div><div class="cc-result">Tráfego local e vendas na loja</div></div>
-      <!-- Caio Souza: screenshot, recorta para o rosto à direita -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="CAIO%20SOUSA%20-%20CAIO%20ENSINA.png" alt="Caio Souza" loading="lazy" style="object-fit:cover;object-position:80% top"/></div><div class="cc-badge bd-b">Concursos</div></div><div class="cc-name"><a href="https://www.instagram.com/caio.ensina/" target="_blank">Caio Souza</a></div><div class="cc-desc">Procurador do Estado aprovado aos 23 anos. +1.500 alunos aprovados e 9 anos ensinando a passar em concursos.</div><div class="cc-result">Escala de alunos e lançamentos</div></div>
+      <!-- Decorando a Lei Seca -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-g"><img src="DECORANDO%20A%20LEI%20SECA.png" alt="Decorando a Lei Seca" loading="lazy" style="object-fit:contain;mix-blend-mode:multiply"/></div><div class="cc-badge bd-g">Concursos</div></div><div class="cc-name"><a href="https://www.instagram.com/decorandoaleiseca/" target="_blank">Decorando a Lei Seca</a></div><div class="cc-desc">Referência nacional no estudo da Lei Seca. +838K seguidores. R$900K/mês em anúncios gerando R$2M/mês de faturamento.</div><div class="cc-result">R$2M/mês de faturamento com tráfego</div></div>
+      <!-- Delegado Klipel -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="DELEGADO%20KLIPEL.jpeg" alt="Delegado Klipel" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-b">Carreiras Policiais</div></div><div class="cc-name"><a href="https://www.instagram.com/delegadoklipel/" target="_blank">Delegado Klipel</a></div><div class="cc-desc">Ex-PMMG, Ex-Delta MG e PCRS. Método 5X para Polícias Civis. +47,5K seg. Todos os lançamentos com 5 dígitos.</div><div class="cc-result">+15 lançamentos · todos com 5 dígitos</div></div>
+      <!-- Themas Cursos -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="THEMAS%20CURSOS.png" alt="Themas Cursos" loading="lazy" style="object-fit:cover;object-position:center center"/></div><div class="cc-badge bd-b">Concursos</div></div><div class="cc-name"><a href="https://www.instagram.com/themascursos/" target="_blank">Themas Cursos</a></div><div class="cc-desc">Inteligência Jurídica. Metodologia completa para concursos com planejamento e materiais atualizados. +50,7K seg.</div><div class="cc-result">Escala de matrículas com CPL reduzido</div></div>
+      <!-- Themas Cartórios -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-a"><img src="THEMAS%20CARTORIOS.png" alt="Themas Cartórios" loading="lazy" style="object-fit:contain;mix-blend-mode:multiply"/></div><div class="cc-badge bd-a">Cartórios</div></div><div class="cc-name"><a href="https://www.instagram.com/themascartorios/" target="_blank">Themas Cartórios</a></div><div class="cc-desc">Método 100% focado em aprovação para concursos de cartório. Extensivo 2026 lançado e com alta captação.</div><div class="cc-result">Lançamento do Extensivo 2026 escalado</div></div>
+      <!-- Doctor Prado -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-r"><img src="CLINICA%20DOCTOR%20PRADO.jpeg" alt="Doctor Prado" loading="lazy" style="object-fit:contain"/></div><div class="cc-badge bd-r">Transplante Capilar</div></div><div class="cc-name"><a href="https://www.instagram.com/doctor.prado/" target="_blank">Doctor Prado</a></div><div class="cc-desc">Clínica referência em transplante capilar, lipomastia e emagrecimento. Teresina–PI desde 2019. +13,3K seg.</div><div class="cc-result">+1.000 pacientes fechados via anúncios</div></div>
+      <!-- Lorena Canuto -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="LORENA%20CANUTO.jpg" alt="Dra. Lorena Canuto" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-v">Harmonização Facial</div></div><div class="cc-name"><a href="https://www.instagram.com/lorenacanuto/" target="_blank">Dra. Lorena Canuto</a></div><div class="cc-desc">Estética Regenerativa e Tecnologias. Formação NY University e IMCAS. +44K seguidores. Fortaleza–CE.</div><div class="cc-result">Agenda com lista de espera via tráfego</div></div>
+      <!-- Dra. Débora Lee -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="DEBORA%20LEE.jpeg" alt="Dra. Débora Lee" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-r">Harmonização Facial</div></div><div class="cc-name"><a href="https://www.instagram.com/deboralee.01/" target="_blank">Dra. Débora Lee</a></div><div class="cc-desc">Especialista em lábios e harmonização facial. +3.000 pacientes. Grajaú e Balsas–MA.</div><div class="cc-result">+3.000 pacientes captados com anúncios</div></div>
+      <!-- Dra. Lindaiane Campos -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="dra%20lindaine%20campos.jpg" alt="Dra. Lindaiane Campos" loading="lazy" style="object-fit:cover;object-position:center 20%"/></div><div class="cc-badge bd-v">Transplante Capilar</div></div><div class="cc-name"><a href="https://www.instagram.com/dra.lindaiane.campos/" target="_blank">Dra. Lindaiane Campos</a></div><div class="cc-desc">Médica Transplante Capilar. Membro da SBCC. CEO da 1ª clínica de transplante capilar do Piauí. +22,2K seg.</div><div class="cc-result">+1.100 cirurgias · lista de espera ativa</div></div>
+      <!-- Studio Hair Beauty -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="STUDI%20HAIR%20BEAUTY.jpg" alt="Studio Hair Beauty" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-a">Beleza</div></div><div class="cc-name"><a href="https://www.instagram.com/studiohair_beauty/" target="_blank">Studio Hair Beauty</a></div><div class="cc-desc">Estúdio de beleza especializado em mechas e coloração. Captação local via Meta Ads.</div><div class="cc-result">+5.000 mechas fechadas via anúncios</div></div>
+      <!-- Dr. Felipe Duarte -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="dr.%20felipe%20duarte.jpg" alt="Dr. Felipe Duarte" loading="lazy" style="object-fit:cover;object-position:top center"/></div><div class="cc-badge bd-v">Cirurgia Plástica</div></div><div class="cc-name"><a href="https://www.instagram.com/drfelipeduarte/" target="_blank">Dr. Felipe Duarte</a></div><div class="cc-desc">Cirurgião Plástico e Professor de Cirurgia Plástica. CRM 10.146. +29,2K seguidores. Florianópolis–SC.</div><div class="cc-result">Captação de pacientes qualificados escalada</div></div>
+      <!-- Olimo das Prime -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av" style="border-radius:50%"><img src="OLIMODAS%20.jpg" alt="Olimo das Prime" loading="lazy" style="object-fit:cover;border-radius:50%"/></div><div class="cc-badge bd-a">Varejo Local</div></div><div class="cc-name"><a href="https://www.instagram.com/olimodasprime/" target="_blank">Olimo das Prime</a></div><div class="cc-desc">Varejo local com loja física em Alto Longá–PI. Tráfego regional com foco em vendas presenciais e online.</div><div class="cc-result">Aumento de vendas com tráfego regional</div></div>
+      <!-- Caio Souza -->
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="CAIO%20SOUSA%20-%20CAIO%20ENSINA.png" alt="Caio Souza" loading="lazy" style="object-fit:cover;object-position:80% top"/></div><div class="cc-badge bd-b">Concursos</div></div><div class="cc-name"><a href="https://www.instagram.com/caio.ensina/" target="_blank">Caio Souza</a></div><div class="cc-desc">Procurador do Estado aprovado aos 23 anos. 9 anos formando aprovados em concursos públicos.</div><div class="cc-result">+1.500 alunos aprovados · lançamentos escalados</div></div>
       <!-- Pimenta Cabra Macho -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="PIMENTA%20CABRA%20MACHO.jpg" alt="Pimenta Cabra Macho" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-r">Alimentos</div></div><div class="cc-name"><a href="https://www.instagram.com/pimentacabramacho/" target="_blank">Pimenta Cabra Macho</a></div><div class="cc-desc">A pimenta mais forte e saborosa do Brasil — A Pimenta dos Artistas! 🌶️ Atacado e varejo. +91,6K seg.</div><div class="cc-result">Escala de vendas nacional</div></div>
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="PIMENTA%20CABRA%20MACHO.jpg" alt="Pimenta Cabra Macho" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-r">Alimentos</div></div><div class="cc-name"><a href="https://www.instagram.com/pimentacabramacho/" target="_blank">Pimenta Cabra Macho</a></div><div class="cc-desc">A pimenta mais forte e saborosa do Brasil — A Pimenta dos Artistas! 🌶️ Atacado e varejo. +91,6K seg.</div><div class="cc-result">Vendas escaladas com Meta Ads</div></div>
       <!-- FT Móveis Planejados -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="FT%20MOVEIS%20PLANEJADOS.avif" alt="FT Móveis Planejados" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-g">Móveis Planejados</div></div><div class="cc-name"><a href="https://www.instagram.com/ftmoveisplanejados/" target="_blank">FT Móveis Planejados</a></div><div class="cc-desc">Empresa de móveis planejados com geração de leads qualificados e aumento de orçamentos via tráfego local.</div><div class="cc-result">Leads qualificados e orçamentos</div></div>
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="FT%20MOVEIS%20PLANEJADOS.avif" alt="FT Móveis Planejados" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-g">Móveis Planejados</div></div><div class="cc-name"><a href="https://www.instagram.com/ftmoveisplanejados/" target="_blank">FT Móveis Planejados</a></div><div class="cc-desc">Empresa de móveis planejados com pipeline de leads qualificados e orçamentos via tráfego local.</div><div class="cc-result">Pipeline de orçamentos gerado com anúncios</div></div>
       <!-- iBombas -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-c"><img src="IBOMBAS.jpg" alt="iBombas" loading="lazy" style="object-fit:contain;mix-blend-mode:multiply"/></div><div class="cc-badge bd-c">Empresa Local</div></div><div class="cc-name"><a href="https://www.instagram.com/imperiodasbombas/" target="_blank">iBombas</a></div><div class="cc-desc">60 anos de tradição. Bombas hidráulicas, irrigação, piscinas e equipamentos. Teresina–PI.</div><div class="cc-result">Geração de leads locais</div></div>
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av logo-c"><img src="IBOMBAS.jpg" alt="iBombas" loading="lazy" style="object-fit:contain;mix-blend-mode:multiply"/></div><div class="cc-badge bd-c">Empresa Local</div></div><div class="cc-name"><a href="https://www.instagram.com/imperiodasbombas/" target="_blank">iBombas</a></div><div class="cc-desc">60 anos de tradição em bombas hidráulicas, irrigação, piscinas e equipamentos. Teresina–PI.</div><div class="cc-result">Novos clientes B2B gerados com tráfego</div></div>
       <!-- Portal Mel Cajuína -->
-      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="PORTAL%20MEL%20CAJUIJNA.jpg" alt="Portal Mel Cajuína" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-c">Portal de Notícias</div></div><div class="cc-name"><a href="https://www.instagram.com/portalmelcajuina/" target="_blank">Portal Mel Cajuína</a></div><div class="cc-desc">Portal de notícias com jornalismo profissional em prol do interesse público. Teresina–PI.</div><div class="cc-result">Audiência e alcance ampliados</div></div>
+      <div class="cc reveal"><div class="cc-top"><div class="cc-av"><img src="PORTAL%20MEL%20CAJUIJNA.jpg" alt="Portal Mel Cajuína" loading="lazy" style="object-fit:cover;object-position:center"/></div><div class="cc-badge bd-c">Portal de Notícias</div></div><div class="cc-name"><a href="https://www.instagram.com/portalmelcajuina/" target="_blank">Portal Mel Cajuína</a></div><div class="cc-desc">Portal de notícias com jornalismo profissional em Teresina–PI. Crescimento de audiência e alcance digital.</div><div class="cc-result">Audiência ampliada com estratégia de tráfego</div></div>
     </div>
   </div>
 </section>
@@ -562,7 +594,7 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
             <div class="fstat-l">anos de experiência</div>
           </div>
           <div class="fstat">
-            <div class="fstat-n">R$1M<span>+</span></div>
+            <div class="fstat-n">R$50M<span>+</span></div>
             <div class="fstat-l">em tráfego gerenciado</div>
           </div>
           <div class="fstat">
@@ -618,6 +650,61 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
   </div>
 </section>
 
+<!-- ─── CASE DE SUCESSO ─── -->
+<section id="case" style="background:var(--bg2)">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:48px">
+      <div class="tag" style="justify-content:center">Case de Sucesso</div>
+      <h2 class="h2">Resultado real.<br>Número <em>real</em>.</h2>
+      <p class="lead" style="margin:16px auto 0;text-align:center">Não falamos de teoria. Aqui está o que acontece quando estratégia e tráfego pago se encontram.</p>
+    </div>
+    <div class="case-card reveal">
+      <div class="case-left">
+        <div class="case-client">
+          <div class="case-avatar logo-g"><img src="DECORANDO%20A%20LEI%20SECA.png" alt="Decorando a Lei Seca" style="object-fit:contain;mix-blend-mode:multiply;width:100%;height:100%"/></div>
+          <div>
+            <div class="case-name">Decorando a Lei Seca</div>
+            <div class="case-niche">Concursos Públicos · +838K seguidores</div>
+          </div>
+        </div>
+        <p class="case-desc">
+          Um dos maiores portais de concursos públicos do Brasil. Com a estratégia certa de tráfego pago e funil de vendas, transformamos investimento em anúncios em uma máquina de faturamento previsível e escalável.
+        </p>
+        <div class="case-badge">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Gestão ativa desde maio de 2025
+        </div>
+      </div>
+      <div class="case-right">
+        <div class="case-stat-big">
+          <div class="case-num">R$ 900K</div>
+          <div class="case-lbl">investido em anúncios por mês</div>
+        </div>
+        <div class="case-arrow">→</div>
+        <div class="case-stat-big highlight">
+          <div class="case-num">R$ 2M</div>
+          <div class="case-lbl">de faturamento por mês</div>
+        </div>
+        <div class="case-roas">
+          <div class="roas-label">ROAS</div>
+          <div class="roas-val">2.2×</div>
+          <div class="roas-note">retorno sobre investimento</div>
+        </div>
+        <div class="case-metrics">
+          <div class="cmetric">
+            <div class="cmetric-val">R$ 50M<span>+</span></div>
+            <div class="cmetric-lbl">gerenciados pelo fundador</div>
+          </div>
+          <div class="cmetric">
+            <div class="cmetric-val">10<span>+ anos</span></div>
+            <div class="cmetric-lbl">de experiência no mercado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── CTA ─── -->
 <section id="cta">
   <div class="container">
@@ -658,11 +745,25 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
 
       <div class="divider">ou fale direto pelo WhatsApp</div>
 
+      <!-- Google My Business -->
+      <a href="https://share.google/8rAFpTNC01U6z0AS0" target="_blank" class="btn-gmb">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Ver no Google Meu Negócio
+      </a>
+
       <a href="https://wa.me/5586999923244?text=Olá!%20Vim%20pelo%20site%20e%20quero%20escalar%20meu%20negócio%20com%20a%20Clube%20Meta." target="_blank" class="btn-wpp">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Falar no WhatsApp agora
       </a>
       <p class="cta-fine">Atendimento de segunda a sexta, das 8h às 18h</p>
+
+      <a href="https://share.google/8rAFpTNC01U6z0AS0" target="_blank" class="gmb-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#EA4335"/>
+        </svg>
+        Ver no Google Meu Negócio
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -699,6 +800,8 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
           <li><a href="https://wa.me/5586999923244" target="_blank">WhatsApp</a></li>
           <li><a href="https://www.instagram.com/agenciaclubemeta/" target="_blank">Instagram</a></li>
           <li><a href="mailto:clubemetaoficial@gmail.com">E-mail</a></li>
+          <li><a href="https://share.google/8rAFpTNC01U6z0AS0" target="_blank">⭐ Google Meu Negócio</a></li>
+          <li><a href="https://share.google/8rAFpTNC01U6z0AS0" target="_blank">Google Meu Negócio</a></li>
         </ul>
       </div>
     </div>
