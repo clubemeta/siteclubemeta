@@ -485,285 +485,314 @@ footer{background:var(--bg3);border-top:1px solid rgba(0,0,0,.1);padding:clamp(4
 
 <!-- CHATBOT SCRIPT -->
 <script>
-// ⚠️ SEGURANÇA: Esta chave ficará visível no código-fonte.
-// Para produção, use um backend proxy (ex: Vercel Edge Function)
-// Chave gerenciada com segurança pela Vercel (Environment Variables)
+// ══ CONFIGURAÇÃO ══
 const CM_WPP = '5586999923244';
+const SUPABASE_URL = 'https://iyjmpbqpifvzitulccky.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5am1wYnFwaWZ2eml0dWxjY2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTM1NjEsImV4cCI6MjA5NjA4OTU2MX0.VFV6Kx44ZxmzgPcqv7DC3DgRqVppug1IvdRy2C_O4uE';
 
-// ── PERSONAS ──
+// ══ CAPTURA DE UTM ══
+function getUTMs() {
+  const p = new URLSearchParams(window.location.search);
+  return {
+    utm_source: p.get('utm_source') || '',
+    utm_medium: p.get('utm_medium') || '',
+    utm_campaign: p.get('utm_campaign') || '',
+    utm_content: p.get('utm_content') || '',
+    utm_term: p.get('utm_term') || '',
+    pagina_origem: window.location.href
+  };
+}
+const utms = getUTMs();
+
+// ══ PERSONAS SDR ══
 const SDRS = [
-  {name:'Mariana Alves', role:'Especialista · Nicho Médico', initials:'MA', bg:'#a78bfa'},
-  {name:'Fernanda Nunes', role:'Especialista · Concursos & Info', initials:'FN', bg:'#0899B2'},
-  {name:'Juliana Castro', role:'Especialista · E-commerce & Local', initials:'JC', bg:'#34d399'}
+  {name:'Mariana Alves', role:'Especialista · Nicho Médico & Saúde', initials:'MA', bg:'#a78bfa'},
+  {name:'Fernanda Nunes', role:'Especialista · Concursos & Infoprodutos', initials:'FN', bg:'#0899B2'},
+  {name:'Juliana Castro', role:'Especialista · E-commerce & Negócios Locais', initials:'JC', bg:'#34d399'}
 ];
 const sdr = SDRS[Math.floor(Math.random()*SDRS.length)];
 
-// ── SYSTEM PROMPT ──
-const SYSTEM_PROMPT = `Você é ${sdr.name}, SDR especialista da Clube Meta — agência fundada por Luciano Barros que já gerenciou mais de R$50 milhões em tráfego pago. Você está qualificando leads que visitaram o site.
+// ══ SYSTEM PROMPT ══
+const SYSTEM_PROMPT = `Você é ${sdr.name}, SDR especialista da Clube Meta — agência fundada por Luciano Barros que já gerenciou mais de R$50 milhões em tráfego pago e estratégias de vendas com IA.
 
-PERSONALIDADE: Consultiva, direta, empática e confiante. Use linguagem informal mas profissional. Misture autoridade com proximidade. Mostre que conhece o mercado do lead.
+PERSONALIDADE: Consultiva, direta, empática e confiante. Use linguagem informal mas profissional. Misture autoridade com proximidade. Mostre que entende o mercado do lead.
 
-OBJETIVO: Coletar as seguintes informações de forma NATURAL e CONVERSACIONAL — nunca como lista ou questionário frio:
-1. Nome do lead
-2. Tipo de negócio / nicho
-3. Faturamento mensal atual (valor aproximado)
-4. Se já investe em tráfego pago e qual plataforma (Meta, Google, outra, nenhuma)
-5. Quanto investe por mês em anúncios atualmente
-6. Maior dor ou desafio com marketing/vendas hoje
-7. Se tem estrutura de captação (landing page, funil, CRM, equipe de vendas)
-8. O que acontece com o lead depois que ele chega — tem processo de fechamento?
-9. Meta principal para os próximos 90 dias
-10. Cidade e estado
-11. WhatsApp para contato com um estrategista
+OBJETIVO: Coletar as seguintes informações de forma NATURAL e CONVERSACIONAL — nunca como lista ou questionário:
 
-REGRAS IMPORTANTES:
-- Faça NO MÁXIMO 1-2 perguntas por mensagem
-- Use o nome do lead sempre que souber
-- Dê micro-insights sobre o mercado deles para demonstrar autoridade (ex: "No nicho médico o que mais vemos é...")
-- Seja empática com os desafios — valide antes de seguir
-- NUNCA diga que é IA, bot, chatbot ou assistente virtual. Se perguntarem, diga "sou especialista da Clube Meta"
-- Mantenha respostas curtas (2-4 frases por vez)
-- Use emojis com moderação (1-2 por mensagem no máximo)
+1. Nome completo
+2. WhatsApp (com DDD)
+3. E-mail
+4. Instagram (@ do perfil)
+5. Tipo de negócio / nicho
+6. Faturamento mensal atual (valor aproximado)
+7. Se já investe em tráfego pago e qual plataforma (Meta, Google, outra, nenhuma)
+8. Valor investido por mês em anúncios atualmente
+9. Maior dor ou desafio com marketing/vendas hoje
+10. Se tem estrutura de captação (landing page, funil, CRM, equipe de vendas)
+11. O que acontece com o lead após captação — tem processo de fechamento estruturado?
+12. Meta principal para os próximos 90 dias
+13. Cidade e estado
 
-QUANDO TIVER TODAS AS 11 INFORMAÇÕES, encerre dizendo que vai preparar o diagnóstico e que um estrategista entrará em contato. Então envie EXATAMENTE neste formato no final da sua última mensagem (invisível para o usuário — será processado pelo sistema):
+REGRAS:
+- Faça NO MÁXIMO 2 perguntas por mensagem
+- Use o nome do lead assim que souber
+- Dê micro-insights sobre o mercado deles para demonstrar autoridade
+- Seja empática com os desafios — valide antes de continuar
+- NUNCA diga que é IA, bot ou assistente virtual. Se perguntarem: "sou especialista da Clube Meta"
+- Mantenha respostas curtas (2-4 frases)
+- Use emojis com moderação (máx 2 por mensagem)
+- Comece coletando nome, WhatsApp, email e Instagram antes de entrar no negócio
 
-[[LEAD]]nome=[nome]&nicho=[nicho]&faturamento=[faturamento]&plataforma=[plataforma]&investimento=[investimento/mês]&desafio=[desafio principal]&estrutura=[tem ou não, o quê]&pos_captacao=[processo de fechamento]&meta=[meta 90 dias]&cidade=[cidade/estado]&whatsapp=[número][[/LEAD]]`;
+QUANDO TIVER TODAS AS 13 INFORMAÇÕES, diga que vai preparar o diagnóstico e envie EXATAMENTE este bloco no final da mensagem (não será mostrado ao usuário):
 
-// ── STATE ──
+[[LEAD]]nome=[nome]&whatsapp=[whatsapp]&email=[email]&instagram=[instagram]&nicho=[nicho]&faturamento=[faturamento]&plataforma=[plataforma]&investimento=[investimento]&desafio=[desafio]&estrutura=[estrutura]&pos_captacao=[processo]&meta=[meta]&cidade=[cidade][[/LEAD]]`;
+
+// ══ ESTADO ══
 let chatOpen = false;
 let convHistory = [];
 let isTyping = false;
-let teaserHidden = false;
 let qualified = false;
 
-// ── INIT ──
+// ══ INIT UI ══
 document.getElementById('sdrAv').textContent = sdr.initials;
 document.getElementById('sdrAv').style.background = sdr.bg;
 document.getElementById('sdrName').textContent = sdr.name;
 document.getElementById('sdrRole').textContent = sdr.role;
 
-// Auto-hide teaser after 8s
-setTimeout(()=>{ const t=document.getElementById('chatTeaser'); if(t&&!chatOpen){t.style.opacity='0';t.style.transition='opacity .5s';setTimeout(()=>{if(!chatOpen)t.style.display='none'},500)} }, 8000);
+setTimeout(()=>{
+  const t=document.getElementById('chatTeaser');
+  if(t&&!chatOpen){t.style.opacity='0';t.style.transition='opacity .5s';setTimeout(()=>{if(!chatOpen)t.style.display='none'},500)}
+}, 9000);
 
-// Enter to send
-document.getElementById('chatInput').addEventListener('keydown', e => {
-  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendMessage(); }
+document.getElementById('chatInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}
 });
-
-// Auto-resize textarea
 document.getElementById('chatInput').addEventListener('input', function(){
   this.style.height='auto';
   this.style.height=Math.min(this.scrollHeight,80)+'px';
 });
 
-function openChat(){ if(!chatOpen) toggleChat(); }
-
+function openChat(){if(!chatOpen)toggleChat();}
 function toggleChat(){
-  chatOpen = !chatOpen;
-  document.getElementById('chatPanel').classList.toggle('open', chatOpen);
-  document.getElementById('chatIconOpen').style.display = chatOpen?'none':'block';
-  document.getElementById('chatIconClose').style.display = chatOpen?'block':'none';
-  document.getElementById('chatBtn').style.animation = chatOpen?'none':'chatbounce 3s ease infinite';
-  const notif = document.getElementById('chatNotif');
-  if(notif) notif.remove();
-  const teaser = document.getElementById('chatTeaser');
-  if(teaser) { teaser.style.display='none'; teaserHidden=true; }
-  if(chatOpen && convHistory.length===0) startConversation();
-  if(chatOpen) setTimeout(()=>document.getElementById('chatInput').focus(), 400);
+  chatOpen=!chatOpen;
+  document.getElementById('chatPanel').classList.toggle('open',chatOpen);
+  document.getElementById('chatIconOpen').style.display=chatOpen?'none':'block';
+  document.getElementById('chatIconClose').style.display=chatOpen?'block':'none';
+  document.getElementById('chatBtn').style.animation=chatOpen?'none':'chatbounce 3s ease infinite';
+  const notif=document.getElementById('chatNotif');
+  if(notif)notif.remove();
+  const teaser=document.getElementById('chatTeaser');
+  if(teaser)teaser.style.display='none';
+  if(chatOpen&&convHistory.length===0)startConversation();
+  if(chatOpen)setTimeout(()=>document.getElementById('chatInput').focus(),400);
 }
 
 async function startConversation(){
   await delay(600);
-  const greeting = `Olá! 👋 Sou ${sdr.name}, especialista da **Clube Meta**.\n\nEstou aqui para fazer um diagnóstico rápido do seu negócio — sem enrolação, direto ao ponto.\n\nPrimeiro: qual é o seu nome? 😊`;
-  addBotMsg(greeting);
-  setQuickReplies([]);
+  addBotMsg(`Olá! 👋 Sou ${sdr.name}, especialista da **Clube Meta**.
+
+Estou aqui para fazer um diagnóstico rápido do seu negócio — sem enrolação, direto ao ponto.
+
+Me diz: qual o seu nome e WhatsApp? 😊`);
 }
 
 async function sendMessage(){
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if(!text || isTyping || qualified) return;
-  input.value = '';
-  input.style.height = 'auto';
+  const input=document.getElementById('chatInput');
+  const text=input.value.trim();
+  if(!text||isTyping||qualified)return;
+  input.value='';
+  input.style.height='auto';
   addUserMsg(text);
   setQuickReplies([]);
   await getAIResponse(text);
 }
 
 function addUserMsg(text){
-  convHistory.push({role:'user', content:text});
-  const msgs = document.getElementById('chatMsgs');
-  const el = document.createElement('div');
-  el.className = 'msg usr';
-  el.innerHTML = `<div class="msg-bubble">${escHtml(text)}</div><div class="msg-time">${getTime()}</div>`;
-  msgs.appendChild(el);
-  scrollBottom();
+  convHistory.push({role:'user',content:text});
+  const msgs=document.getElementById('chatMsgs');
+  const el=document.createElement('div');
+  el.className='msg usr';
+  el.innerHTML=`<div class="msg-bubble">${escHtml(text)}</div><div class="msg-time">${getTime()}</div>`;
+  msgs.appendChild(el);scrollBottom();
 }
 
 function addBotMsg(text){
-  const msgs = document.getElementById('chatMsgs');
-  const el = document.createElement('div');
-  el.className = 'msg bot';
-  // Parse **bold** and \n
-  const formatted = escHtml(text).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
-  el.innerHTML = `<div class="msg-av" style="background:${sdr.bg}">${sdr.initials}</div><div><div class="msg-bubble">${formatted}</div><div class="msg-time">${getTime()}</div></div>`;
-  msgs.appendChild(el);
-  scrollBottom();
+  const msgs=document.getElementById('chatMsgs');
+  const el=document.createElement('div');
+  el.className='msg bot';
+  const fmt=escHtml(text).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/
+/g,'<br>');
+  el.innerHTML=`<div class="msg-av" style="background:${sdr.bg}">${sdr.initials}</div><div><div class="msg-bubble">${fmt}</div><div class="msg-time">${getTime()}</div></div>`;
+  msgs.appendChild(el);scrollBottom();
 }
 
 function showTyping(){
-  const msgs = document.getElementById('chatMsgs');
-  const el = document.createElement('div');
-  el.className = 'msg bot'; el.id = 'typingIndicator';
-  el.innerHTML = `<div class="msg-av" style="background:${sdr.bg}">${sdr.initials}</div><div class="msg-bubble" style="padding:4px 8px"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
-  msgs.appendChild(el);
-  scrollBottom();
-  isTyping = true;
-  document.getElementById('chatSend').disabled = true;
+  const msgs=document.getElementById('chatMsgs');
+  const el=document.createElement('div');
+  el.className='msg bot';el.id='typingIndicator';
+  el.innerHTML=`<div class="msg-av" style="background:${sdr.bg}">${sdr.initials}</div><div class="msg-bubble" style="padding:4px 8px"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+  msgs.appendChild(el);scrollBottom();
+  isTyping=true;
+  document.getElementById('chatSend').disabled=true;
 }
 
 function hideTyping(){
-  const el = document.getElementById('typingIndicator');
-  if(el) el.remove();
-  isTyping = false;
-  document.getElementById('chatSend').disabled = false;
+  const el=document.getElementById('typingIndicator');
+  if(el)el.remove();
+  isTyping=false;
+  document.getElementById('chatSend').disabled=false;
 }
 
-function setQuickReplies(options){
-  const qr = document.getElementById('quickReplies');
-  qr.innerHTML = '';
-  options.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.className = 'qr-btn';
-    btn.textContent = opt;
-    btn.onclick = () => { document.getElementById('chatInput').value = opt; sendMessage(); };
+function setQuickReplies(opts){
+  const qr=document.getElementById('quickReplies');
+  qr.innerHTML='';
+  opts.forEach(opt=>{
+    const btn=document.createElement('button');
+    btn.className='qr-btn';btn.textContent=opt;
+    btn.onclick=()=>{document.getElementById('chatInput').value=opt;sendMessage();};
     qr.appendChild(btn);
   });
 }
 
 async function getAIResponse(userMsg){
   showTyping();
-  // Build messages array for API
-  const apiMessages = convHistory.map(m => ({role:m.role, content:m.content}));
-
-  // Typing delay based on response length
-  await delay(800 + Math.random()*600);
-
-  try {
-    const res = await fetch('/api/chat', {
+  const apiMessages=convHistory.map(m=>({role:m.role,content:m.content}));
+  await delay(700+Math.random()*500);
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{
-        'Content-Type':'application/json'
+        'Content-Type':'application/json',
+        'x-api-key':'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',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
       },
-      body: JSON.stringify({
-        model:'claude-sonnet-4-6',
-        max_tokens:400,
-        system: SYSTEM_PROMPT,
-        messages: apiMessages
-      })
+      body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:400,system:SYSTEM_PROMPT,messages:apiMessages})
     });
-
-    if(!res.ok) throw new Error('API error');
-    const data = await res.json();
-    const fullText = data.content[0].text;
-
-    // Check for lead qualification tag
-    const leadMatch = fullText.match(/\[\[LEAD\]\](.*?)\[\[\/LEAD\]\]/s);
-    let displayText = fullText.replace(/\[\[LEAD\]\].*?\[\[\/LEAD\]\]/s, '').trim();
-
+    if(!res.ok)throw new Error('API error');
+    const data=await res.json();
+    const fullText=data.content[0].text;
+    const leadMatch=fullText.match(/\[\[LEAD\]\](.*?)\[\[\/LEAD\]\]/s);
+    const displayText=fullText.replace(/\[\[LEAD\]\].*?\[\[\/LEAD\]\]/s,'').trim();
     hideTyping();
-    convHistory.push({role:'assistant', content:fullText});
-
-    await delay(200);
+    convHistory.push({role:'assistant',content:fullText});
+    await delay(150);
     addBotMsg(displayText);
-
     if(leadMatch){
-      qualified = true;
-      await delay(1000);
-      showLeadCard(leadMatch[1]);
+      qualified=true;
+      await delay(800);
+      processLead(leadMatch[1]);
     } else {
-      // Suggest quick replies based on context
-      suggestQuickReplies(displayText);
+      suggestQR(displayText);
     }
-
-  } catch(err){
+  }catch(err){
     hideTyping();
-    // Fallback se API falhar
-    const fallback = 'Hmm, tive um probleminha aqui. Pode repetir? 😅';
-    addBotMsg(fallback);
-    convHistory.push({role:'assistant', content:fallback});
+    addBotMsg('Hmm, tive um probleminha aqui. Pode repetir? 😅');
+    convHistory.push({role:'assistant',content:'Erro técnico.'});
   }
 }
 
-function showLeadCard(rawData){
-  // Parse lead data
-  const params = new URLSearchParams(rawData.replace(/&amp;/g,'&'));
-  const nome = params.get('nome') || 'Lead';
-  const nicho = params.get('nicho') || '';
-  const fat = params.get('faturamento') || '';
-  const plat = params.get('plataforma') || '';
-  const inv = params.get('investimento') || '';
-  const desafio = params.get('desafio') || '';
-  const meta = params.get('meta') || '';
-  const cidade = params.get('cidade') || '';
-  const wpp = params.get('whatsapp') || '';
+async function processLead(rawData){
+  const p=new URLSearchParams(rawData);
+  const lead={
+    nome: p.get('nome')||'',
+    whatsapp: p.get('whatsapp')||'',
+    email: p.get('email')||'',
+    instagram: p.get('instagram')||'',
+    nicho: p.get('nicho')||'',
+    faturamento: p.get('faturamento')||'',
+    plataforma: p.get('plataforma')||'',
+    investimento: p.get('investimento')||'',
+    desafio: p.get('desafio')||'',
+    estrutura: p.get('estrutura')||'',
+    pos_captacao: p.get('pos_captacao')||'',
+    meta_90_dias: p.get('meta')||'',
+    cidade: p.get('cidade')||'',
+    sdr_atendente: sdr.name,
+    conversa: convHistory,
+    ...utms
+  };
 
-  const msgs = document.getElementById('chatMsgs');
-  const card = document.createElement('div');
-  card.className = 'lead-card';
-  card.innerHTML = `
-    <div class="lead-card-title">✅ Diagnóstico Concluído, ${escHtml(nome)}!</div>
+  // Salvar no Supabase
+  try{
+    await fetch(`${SUPABASE_URL}/rest/v1/clubemeta_leads`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(lead)
+    });
+  }catch(e){console.log('Supabase error:',e);}
+
+  // Mostrar card
+  showLeadCard(lead);
+}
+
+function showLeadCard(lead){
+  const msgs=document.getElementById('chatMsgs');
+  const card=document.createElement('div');
+  card.className='lead-card';
+  card.innerHTML=`
+    <div class="lead-card-title">✅ Diagnóstico Concluído!</div>
     <div class="lead-card-body">
-      📌 <strong>Nicho:</strong> ${escHtml(nicho)}<br>
-      💰 <strong>Faturamento:</strong> ${escHtml(fat)}<br>
-      📡 <strong>Tráfego atual:</strong> ${escHtml(plat)} · ${escHtml(inv)}<br>
-      🎯 <strong>Meta 90 dias:</strong> ${escHtml(meta)}<br>
-      📍 <strong>Cidade:</strong> ${escHtml(cidade)}
+      👤 <strong>${escHtml(lead.nome)}</strong><br>
+      📱 ${escHtml(lead.whatsapp)}<br>
+      ✉️ ${escHtml(lead.email)}<br>
+      📸 ${escHtml(lead.instagram)}<br>
+      🏢 ${escHtml(lead.nicho)} · ${escHtml(lead.faturamento)}<br>
+      🎯 Meta: ${escHtml(lead.meta_90_dias)}
     </div>
-    <button class="btn-wpp-chat" onclick="sendToWpp('${encodeURIComponent(nome)}','${encodeURIComponent(nicho)}','${encodeURIComponent(fat)}','${encodeURIComponent(plat)}','${encodeURIComponent(inv)}','${encodeURIComponent(desafio)}','${encodeURIComponent(meta)}','${encodeURIComponent(cidade)}','${encodeURIComponent(wpp)}')">
+    <button class="btn-wpp-chat" onclick="sendToWpp(${JSON.stringify(lead).replace(/"/g,'&quot;')})">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Falar com um estrategista agora
     </button>`;
   msgs.appendChild(card);
   scrollBottom();
-  document.getElementById('chatInput').disabled = true;
-  document.getElementById('chatSend').disabled = true;
-  document.getElementById('chatInput').placeholder = 'Conversa concluída ✅';
+  document.getElementById('chatInput').disabled=true;
+  document.getElementById('chatSend').disabled=true;
+  document.getElementById('chatInput').placeholder='Conversa concluída ✅';
 }
 
-function sendToWpp(nome,nicho,fat,plat,inv,desafio,meta,cidade,wpp){
-  const n=decodeURIComponent, msg =
+function sendToWpp(lead){
+  const utm_info = utms.utm_source ? `
+📡 *UTM:* ${utms.utm_source} / ${utms.utm_campaign}` : '';
+  const msg=
 `🤖 *LEAD QUALIFICADO — CLUBE META*
+👤 *Nome:* ${lead.nome}
+📱 *WhatsApp:* ${lead.whatsapp}
+✉️ *E-mail:* ${lead.email}
+📸 *Instagram:* ${lead.instagram}
+🏢 *Nicho:* ${lead.nicho}
+💰 *Faturamento:* ${lead.faturamento}
+📡 *Tráfego:* ${lead.plataforma} · ${lead.investimento}/mês
+😰 *Desafio:* ${lead.desafio}
+🏗️ *Estrutura:* ${lead.estrutura}
+🎯 *Meta 90 dias:* ${lead.meta_90_dias}
+📍 *Cidade:* ${lead.cidade}
+🤝 *SDR:* ${lead.sdr_atendente}${utm_info}
 
-👤 *Nome:* ${n(nome)}
-🏢 *Nicho:* ${n(nicho)}
-💰 *Faturamento:* ${n(fat)}
-📡 *Tráfego:* ${n(plat)} · ${n(inv)}/mês
-😰 *Desafio:* ${n(desafio)}
-🎯 *Meta 90 dias:* ${n(meta)}
-📍 *Cidade:* ${n(cidade)}
-📱 *WhatsApp:* ${n(wpp)}
-
-✅ _Lead qualificado pelo chatbot SDR — Clube Meta_`;
-  window.open(`https://wa.me/${CM_WPP}?text=${encodeURIComponent(msg)}`, '_blank');
+✅ _Lead salvo no Supabase · Clube Meta_`;
+  window.open(`https://wa.me/${CM_WPP}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
-function suggestQuickReplies(text){
-  const t = text.toLowerCase();
-  if(t.includes('faturamento') || t.includes('quanto') && t.includes('mês'))
+function suggestQR(text){
+  const t=text.toLowerCase();
+  if(t.includes('faturamento')||t.includes('quanto') && t.includes('mês'))
     setQuickReplies(['Menos de R$10k','R$10k–50k','R$50k–200k','Acima de R$200k']);
-  else if(t.includes('plataforma') || t.includes('anunciar') || t.includes('investe'))
+  else if(t.includes('plataforma')||t.includes('anunciar')||t.includes('investe'))
     setQuickReplies(['Meta Ads','Google Ads','Ambas','Não invisto ainda']);
-  else if(t.includes('equipe') || t.includes('sozinho'))
+  else if(t.includes('equipe')||t.includes('sozinho'))
     setQuickReplies(['Trabalho sozinho','Tenho equipe pequena','Tenho equipe estruturada']);
-  else
-    setQuickReplies([]);
+  else setQuickReplies([]);
 }
 
-function scrollBottom(){ const m=document.getElementById('chatMsgs'); m.scrollTop=m.scrollHeight; }
-function getTime(){ return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }
-function delay(ms){ return new Promise(r=>setTimeout(r,ms)); }
-function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function scrollBottom(){const m=document.getElementById('chatMsgs');m.scrollTop=m.scrollHeight;}
+function getTime(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});}
+function delay(ms){return new Promise(r=>setTimeout(r,ms));}
+function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 </script>
 
 <!-- DRAWER MOBILE -->
