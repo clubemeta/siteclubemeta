@@ -1008,9 +1008,9 @@ function getAI() {
   showDots();
   var messages = hist.map(function(m) { return {role: m.role, content: m.content}; });
   setTimeout(function() {
-    fetch('https://api.anthropic.com/v1/messages', {
+    fetch('/api/chat', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json', 'x-api-key': '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', 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true'},
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 400,
