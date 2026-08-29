@@ -849,8 +849,61 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 
 
 
-<!-- ═══ CHAT SDR CLUBE META ═══ -->
 
+
+<!-- ═══ CHAT SDR CLUBE META ═══ -->
+<style>
+.cm-fab{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.cm-tip{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:9px 14px;font-size:.8rem;font-weight:600;color:#0d1117;box-shadow:0 4px 12px rgba(0,0,0,.1);cursor:pointer}
+.cm-tip span{color:#0899B2;display:block;font-size:.72rem}
+.cm-btn{width:58px;height:58px;border-radius:50%;background:#0899B2;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(8,153,178,.5);display:flex;align-items:center;justify-content:center;position:relative}
+.cm-btn:hover{transform:scale(1.06)}
+.cm-btn svg{color:#fff}
+.cm-ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(8,153,178,.35);animation:cmring 2s ease-out infinite;pointer-events:none}
+@keyframes cmring{0%{transform:scale(1);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.cm-panel{position:fixed;bottom:94px;right:24px;width:358px;height:540px;background:#fff;border:1px solid #e2e8f0;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden;z-index:9998;transform:translateY(14px) scale(.96);opacity:0;pointer-events:none;transition:transform .3s ease,opacity .3s ease}
+.cm-panel.on{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+@media(max-width:480px){.cm-panel{width:calc(100vw - 20px);right:10px;bottom:84px;height:65vh}}
+.cm-head{background:#0899B2;padding:14px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cm-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;color:#fff;border:2px solid rgba(255,255,255,.3);flex-shrink:0}
+.cm-info{flex:1}
+.cm-nm{font-weight:700;font-size:.9rem;color:#fff}
+.cm-st{font-size:.72rem;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:5px;margin-top:2px}
+.cm-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:blink 1.5s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.cm-x{background:rgba(255,255,255,.15);border:none;border-radius:7px;width:28px;height:28px;color:#fff;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center}
+.cm-x:hover{background:rgba(255,255,255,.25)}
+.cm-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:#f8fafc}
+.cm-msg-b,.cm-msg-u{display:flex;gap:7px;align-items:flex-end;animation:msgin .25s ease}
+@keyframes msgin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.cm-msg-b{align-self:flex-start;max-width:88%}
+.cm-msg-u{flex-direction:row-reverse;align-self:flex-end;max-width:85%}
+.cm-av2{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;color:#fff;flex-shrink:0}
+.cm-bbl-b{background:#fff;color:#0d1117;border:1px solid #e2e8f0;border-radius:14px;border-bottom-left-radius:3px;padding:9px 13px;font-size:.82rem;line-height:1.5;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.cm-bbl-u{background:#0899B2;color:#fff;border-radius:14px;border-bottom-right-radius:3px;padding:9px 13px;font-size:.82rem;line-height:1.5}
+.cm-t{font-size:.62rem;color:#94a3b8;padding:0 3px;margin-top:2px}
+.cm-dots-wrap{display:flex;gap:4px;padding:11px 14px}
+.cm-dots-wrap span{width:7px;height:7px;border-radius:50%;background:#94a3b8;animation:dot 1.2s ease infinite}
+.cm-dots-wrap span:nth-child(2){animation-delay:.15s}
+.cm-dots-wrap span:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.cm-qr{padding:0 14px 10px;background:#f8fafc;display:flex;flex-wrap:wrap;gap:6px;min-height:0}
+.cm-qb{background:#fff;border:1px solid #0899B2;color:#0899B2;border-radius:100px;padding:5px 13px;font-size:.76rem;font-weight:600;cursor:pointer}
+.cm-qb:hover{background:#0899B2;color:#fff}
+.cm-card{background:linear-gradient(135deg,#0899B2,#0779a0);border-radius:12px;padding:14px;color:#fff;margin:4px 0}
+.cm-ct{font-weight:800;font-size:.85rem;margin-bottom:8px}
+.cm-cb{font-size:.76rem;line-height:1.6;opacity:.92}
+.cm-wb{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:#25d366;color:#fff;border:none;border-radius:9px;padding:11px;font-weight:700;font-size:.85rem;cursor:pointer;margin-top:10px}
+.cm-wb:hover{background:#1da851}
+.cm-foot{padding:10px 12px;border-top:1px solid #e2e8f0;display:flex;gap:8px;background:#fff;flex-shrink:0}
+.cm-inp{flex:1;border:1px solid #e2e8f0;border-radius:9px;padding:8px 12px;font-size:.82rem;outline:none;font-family:inherit;color:#0d1117;background:#f8fafc;resize:none;max-height:72px;overflow-y:auto}
+.cm-inp:focus{border-color:#0899B2}
+.cm-inp::placeholder{color:#94a3b8}
+.cm-snd{width:36px;height:36px;border-radius:9px;background:#0899B2;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;align-self:flex-end}
+.cm-snd:hover{background:#0779a0}
+.cm-snd:disabled{opacity:.4;cursor:not-allowed}
+.cm-pw{text-align:center;font-size:.62rem;color:#94a3b8;padding:4px 0 2px;background:#fff}
+</style>
 <!-- CHAT FAB -->
 <div class="cm-fab" id="cmFab">
   <div class="cm-tip" id="cmTip">💬 Fale com nossa especialista<span>Diagnóstico gratuito em minutos</span></div>
@@ -969,7 +1022,8 @@ function getAI() {
     .then(function(d) {
       hideDots();
       busy = false;
-      var full = d.content && d.content[0] ? d.content[0].text : 'Erro na resposta';
+      var errMsg = d.error ? ('Erro: ' + (d.error.message||d.error.type||'API')) : 'Sem resposta da API';
+var full = d.content && d.content[0] ? d.content[0].text : errMsg;
       var match = full.match(/\[\[LEAD\]\]([\s\S]*?)\[\[\/LEAD\]\]/);
       var display = full.replace(/\[\[LEAD\]\][\s\S]*?\[\[\/LEAD\]\]/, '').trim();
       hist.push({role: 'assistant', content: full});
