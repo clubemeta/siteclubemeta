@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clube Meta | Agência de Tráfego Pago e Estratégias de Crescimento</title>
+  <meta name="description" content="Clube Meta — Agência especializada em tráfego pago, estratégias de vendas e crescimento acelerado. Médicos, infoprodutores, empresas locais e e-commerce." />
+  <meta name="keywords" content="tráfego pago, gestor de tráfego, agência de tráfego pago, marketing para médicos, marketing para concursos públicos" />
+  <meta property="og:title" content="Clube Meta | Escalamos seu faturamento com estratégia de verdade" />
+  <meta property="og:description" content="Não somos gestores de tráfego. Somos estrategistas de crescimento e vendas." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ RESET & TOKENS ============ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #070809;
+      --dark:    #0d0f11;
+      --surface: #12151a;
+      --border:  rgba(255,255,255,.07);
+      --white:   #f5f7f0;
+      --off:     #9ba3a0;
+      --green:   #0899B2;
+      --green2:  #0779a0;
+      --glow:    rgba(8,153,178,.18);
+      --red:     #ff4d4d;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--green); color: var(--black); }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============ SCROLLBAR ============ */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 2px; }
+
+    /* ============ NOISE OVERLAY ============ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      background-size: 180px;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .5;
+    }
+
+    /* ============ NAV ============ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .4s, background .4s;
+    }
+    nav.scrolled {
+      background: rgba(7,8,9,.85);
+      border-color: var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: -.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span { color: var(--green); }
+    .logo-dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { box-shadow: 0 0 0 0 var(--glow); }
+      50% { box-shadow: 0 0 0 6px transparent; }
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: .875rem;
+      font-weight: 500;
+      color: var(--off);
+      transition: color .2s;
+      letter-spacing: .02em;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--black) !important;
+      font-weight: 700 !important;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: .85rem !important;
+      letter-spacing: .04em;
+      transition: background .2s, transform .2s !important;
+    }
+    .nav-cta:hover { background: var(--green2) !important; transform: translateY(-1px); }
+
+    .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+    .nav-mobile-btn span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: .3s; }
+
+    /* ============ HERO ============ */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 140px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(8,153,178,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,153,178,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(8,153,178,.12) 0%, transparent 70%);
+      top: -100px; right: -200px;
+      pointer-events: none;
+      animation: float-glow 8s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(8,153,178,.06) 0%, transparent 70%);
+      bottom: 0; left: -100px;
+      pointer-events: none;
+      animation: float-glow 10s ease-in-out infinite reverse;
+    }
+    @keyframes float-glow {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(8,153,178,.1);
+      border: 1px solid rgba(8,153,178,.25);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      width: fit-content;
+      margin-bottom: 32px;
+      animation: fade-up .8s var(--ease-out-expo) both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: blink 1.5s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.0;
+      letter-spacing: -.03em;
+      max-width: 900px;
+      animation: fade-up .9s .1s var(--ease-out-expo) both;
+    }
+    .hero-h1 em {
+      font-style: normal;
+      color: var(--green);
+      position: relative;
+    }
+    .hero-h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      opacity: .4;
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--off);
+      max-width: 620px;
+      font-weight: 300;
+      line-height: 1.7;
+      animation: fade-up .9s .2s var(--ease-out-expo) both;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 40px;
+      animation: fade-up .9s .3s var(--ease-out-expo) both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 16px 32px;
+      border-radius: 8px;
+      letter-spacing: .01em;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(8,153,178,.35);
+      background: var(--green2);
+    }
+
+    .btn-wpp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-weight: 600;
+      font-size: .95rem;
+      padding: 16px 28px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      letter-spacing: .01em;
+      transition: border-color .2s, background .2s, transform .2s;
+    }
+    .btn-wpp:hover {
+      border-color: rgba(8,153,178,.5);
+      background: rgba(8,153,178,.06);
+      transform: translateY(-2px);
+    }
+    .btn-wpp svg { color: #0899B2; }
+
+    .hero-niches {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 60px;
+      animation: fade-up .9s .4s var(--ease-out-expo) both;
+    }
+    .niche-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: .82rem;
+      color: var(--off);
+      font-weight: 500;
+      transition: border-color .2s, color .2s;
+    }
+    .niche-tag:hover { border-color: var(--green); color: var(--white); }
+    .niche-tag .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      animation: fade-up .9s .5s var(--ease-out-expo) both;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1;
+      color: var(--white);
+    }
+    .stat-num span { color: var(--green); }
+    .stat-label { font-size: .82rem; color: var(--off); margin-top: 4px; font-weight: 400; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============ TICKER ============ */
+    .ticker-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 14px 0;
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 32px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--off);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .ticker-item span { color: var(--green); font-size: 1rem; }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============ SECTIONS COMMON ============ */
+    section { padding: 100px 40px; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--green);
+      border-radius: 1px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      max-width: 800px;
+    }
+    .section-title em { color: var(--green); font-style: normal; }
+
+    .section-desc {
+      margin-top: 20px;
+      color: var(--off);
+      font-size: 1.05rem;
+      max-width: 600px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .7s var(--ease-out-expo), transform .7s var(--ease-out-expo);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============ SOBRE ============ */
+    #sobre {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    #sobre::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle at top right, rgba(8,153,178,.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .sobre-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+    .sobre-card-main {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-card-main::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+    }
+
+    .metric-row {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .metric-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: border-color .2s;
+    }
+    .metric-item:hover { border-color: rgba(8,153,178,.3); }
+    .metric-info {}
+    .metric-name { font-size: .8rem; color: var(--off); font-weight: 500; }
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -.02em;
+    }
+    .metric-bar-wrap {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,.06);
+      border-radius: 2px;
+      overflow: hidden;
+      max-width: 120px;
+    }
+    .metric-bar {
+      height: 100%;
+      background: var(--green);
+      border-radius: 2px;
+      transition: width 1.5s var(--ease-out-expo);
+      width: 0;
+    }
+    .metric-bar.animated { }
+
+    .diferenciais {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 32px;
+    }
+    .dif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .dif-icon {
+      width: 40px; height: 40px;
+      background: rgba(8,153,178,.1);
+      border: 1px solid rgba(8,153,178,.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      transition: background .2s, border-color .2s;
+    }
+    .dif-item:hover .dif-icon {
+      background: rgba(8,153,178,.2);
+      border-color: rgba(8,153,178,.5);
+    }
+    .dif-text h4 { font-weight: 700; font-size: .95rem; margin-bottom: 4px; font-family: var(--font-display); }
+    .dif-text p { font-size: .85rem; color: var(--off); line-height: 1.55; font-weight: 300; }
+
+    /* ============ CLIENTES ============ */
+    #clientes { max-width: 1200px; margin: 0 auto; }
+
+    .clientes-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .client-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+    .client-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(8,153,178,.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .client-card:hover {
+      border-color: rgba(8,153,178,.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.4);
+    }
+    .client-card:hover::after { opacity: 1; }
+
+    .client-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .client-avatar {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .client-nicho-badge {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .client-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -.01em;
+    }
+    .client-desc { font-size: .82rem; color: var(--off); margin-top: 4px; line-height: 1.5; font-weight: 300; }
+    .client-result {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .8rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .client-result::before { content: '↑'; font-size: 1rem; }
+
+    /* Color variants */
+    .cv-green { background: rgba(8,153,178,.12); color: var(--green); }
+    .cv-blue  { background: rgba(59,130,246,.12); color: #60a5fa; }
+    .cv-amber { background: rgba(251,191,36,.12); color: #fbbf24; }
+    .cv-rose  { background: rgba(244,63,94,.12);  color: #fb7185; }
+    .cv-violet{ background: rgba(167,139,250,.12);color: #a78bfa; }
+    .cv-cyan  { background: rgba(34,211,238,.12); color: #22d3ee; }
+
+    .nb-green  { background: rgba(8,153,178,.1);   color: var(--green);   border: 1px solid rgba(8,153,178,.2); }
+    .nb-blue   { background: rgba(59,130,246,.1);  color: #60a5fa;  border: 1px solid rgba(59,130,246,.2); }
+    .nb-amber  { background: rgba(251,191,36,.1);  color: #fbbf24;  border: 1px solid rgba(251,191,36,.2); }
+    .nb-rose   { background: rgba(244,63,94,.1);   color: #fb7185;  border: 1px solid rgba(244,63,94,.2); }
+    .nb-violet { background: rgba(167,139,250,.1); color: #a78bfa;  border: 1px solid rgba(167,139,250,.2); }
+    .nb-cyan   { background: rgba(34,211,238,.1);  color: #22d3ee;  border: 1px solid rgba(34,211,238,.2); }
+
+    /* ============ SERVICOS ============ */
+    #servicos {
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .servicos-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .servico-card {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 30px;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      position: relative;
+      overflow: hidden;
+      group: true;
+    }
+    .servico-card:hover {
+      border-color: rgba(8,153,178,.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .servico-card.featured {
+      border-color: rgba(8,153,178,.3);
+      background: linear-gradient(135deg, rgba(8,153,178,.06) 0%, var(--dark) 60%);
+    }
+    .servico-card.featured::before {
+      content: 'MAIS BUSCADO';
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      color: var(--green);
+      background: rgba(8,153,178,.12);
+      border: 1px solid rgba(8,153,178,.25);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .serv-icon {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .serv-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -.02em;
+      margin-bottom: 12px;
+    }
+    .serv-desc {
+      font-size: .875rem;
+      color: var(--off);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+    .serv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 24px;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--green);
+      transition: gap .2s;
+    }
+    .servico-card:hover .serv-link { gap: 10px; }
+
+    /* ============ COMO FUNCIONA ============ */
+    #como-funciona {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .steps-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 56px;
+    }
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .step-item {
+      display: flex;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: default;
+      transition: .2s;
+    }
+    .step-item:first-child { padding-top: 0; }
+    .step-item:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.06);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 40px;
+      transition: color .3s;
+      letter-spacing: -.04em;
+    }
+    .step-item:hover .step-num { color: rgba(8,153,178,.3); }
+    .step-content h3 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .step-content p { font-size: .875rem; color: var(--off); line-height: 1.65; font-weight: 300; }
+
+    .steps-visual {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .steps-visual::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), transparent);
+    }
+    .chart-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .chart-sub { font-size: .78rem; color: var(--off); margin-bottom: 32px; }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 160px;
+    }
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .bar-fill {
+      width: 100%;
+      background: rgba(8,153,178,.15);
+      border-radius: 6px 6px 0 0;
+      position: relative;
+      transition: height 1.5s var(--ease-out-expo);
+      border-top: 2px solid rgba(8,153,178,.4);
+      min-height: 8px;
+    }
+    .bar-fill.highlight {
+      background: var(--green);
+      border-color: var(--green);
+    }
+    .bar-fill.highlight::after {
+      content: attr(data-val);
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: .75rem;
+      font-weight: 800;
+      color: var(--green);
+      white-space: nowrap;
+    }
+    .bar-label { font-size: .68rem; color: var(--off); text-align: center; font-weight: 500; }
+
+    .chart-note {
+      margin-top: 28px;
+      padding: 16px;
+      background: rgba(8,153,178,.07);
+      border: 1px solid rgba(8,153,178,.15);
+      border-radius: 8px;
+      font-size: .8rem;
+      color: var(--off);
+      line-height: 1.6;
+    }
+    .chart-note strong { color: var(--green); }
+
+    /* ============ DIFERENCIAL ============ */
+    #diferencial {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    #diferencial::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 50%, rgba(8,153,178,.07) 0%, transparent 60%);
+    }
+    .diferencial-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .big-statement {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.05;
+    }
+    .big-statement em { color: var(--green); font-style: normal; display: block; }
+
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .problem-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: rgba(255,77,77,.05);
+      border: 1px solid rgba(255,77,77,.1);
+      border-radius: 10px;
+      transition: border-color .2s;
+    }
+    .problem-item:hover { border-color: rgba(255,77,77,.25); }
+    .problem-x {
+      width: 32px; height: 32px;
+      background: rgba(255,77,77,.1);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red);
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .problem-text h4 { font-weight: 600; font-size: .9rem; margin-bottom: 2px; }
+    .problem-text p { font-size: .8rem; color: var(--off); font-weight: 300; }
+
+    .solution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .solution-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px;
+      background: rgba(8,153,178,.05);
+      border: 1px solid rgba(8,153,178,.12);
+      border-radius: 10px;
+      transition: border-color .2s;
+    }
+    .solution-item:hover { border-color: rgba(8,153,178,.3); }
+    .solution-check {
+      width: 32px; height: 32px;
+      background: rgba(8,153,178,.12);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--green);
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .solution-text h4 { font-weight: 600; font-size: .9rem; margin-bottom: 2px; }
+    .solution-text p { font-size: .8rem; color: var(--off); font-weight: 300; }
+
+    /* ============ CTA SECTION ============ */
+    #cta {
+      background: var(--black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(8,153,178,.09) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .cta-h2 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -.04em;
+      line-height: 1.1;
+    }
+    .cta-h2 em { color: var(--green); font-style: normal; }
+
+    .cta-desc {
+      margin-top: 20px;
+      color: var(--off);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .jotform-wrap {
+      width: 100%;
+      max-width: 680px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 8px;
+      position: relative;
+    }
+    .jotform-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      border-radius: 16px 16px 0 0;
+    }
+    .jotform-label {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--off);
+      text-align: center;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 14px 8px 8px;
+    }
+
+    .cta-form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: left;
+    }
+    .form-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: .78rem; font-weight: 600; color: var(--off); letter-spacing: .04em; text-transform: uppercase; }
+    .form-group input,
+    .form-group select {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder { color: rgba(155,163,160,.4); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--green); }
+    .form-group select option { background: var(--dark); }
+
+    .form-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 14px;
+      border-radius: 8px;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      margin-top: 4px;
+    }
+    .form-submit:hover {
+      background: var(--green2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(8,153,178,.3);
+    }
+
+    .cta-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--off);
+      font-size: .8rem;
+      font-weight: 500;
+      width: 100%;
+      max-width: 440px;
+    }
+    .cta-divider::before,.cta-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .btn-wpp-big {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #0899B2;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 36px;
+      border-radius: 10px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-wpp-big:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(8,153,178,.3);
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 60px 40px 40px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand { max-width: 320px; }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.4rem;
+      letter-spacing: -.02em;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 16px;
+    }
+    .footer-logo span { color: var(--green); }
+    .footer-tagline { font-size: .875rem; color: var(--off); line-height: 1.65; font-weight: 300; }
+
+    .footer-links-col h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--off);
+      margin-bottom: 16px;
+    }
+    .footer-links-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links-col a { font-size: .875rem; color: var(--off); transition: color .2s; }
+    .footer-links-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 32px;
+    }
+    .footer-copy { font-size: .8rem; color: rgba(155,163,160,.5); }
+    .footer-green { color: var(--green); }
+
+    /* ============ FLOATING WPP ============ */
+    .wpp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 800;
+      width: 56px; height: 56px;
+      background: #0899B2;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(8,153,178,.5);
+      transition: transform .2s, box-shadow .2s;
+      animation: wpp-bounce 3s ease-in-out infinite;
+    }
+    .wpp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(8,153,178,.6);
+      animation: none;
+    }
+    .wpp-float svg { color: #fff; }
+    @keyframes wpp-bounce {
+      0%,100%  { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .wpp-pulse {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(8,153,178,.4);
+      animation: ripple 2s ease-out infinite;
+    }
+    @keyframes ripple {
+      0%  { transform: scale(1); opacity: 1; }
+      100%{ transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ============ SCARCITY BLOCK ============ */
+    .scarcity-box {
+      width: 100%;
+      max-width: 540px;
+      background: var(--surface);
+      border: 1px solid rgba(8,153,178,.3);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 48px rgba(8,153,178,.08);
+    }
+    .scarcity-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green2));
+    }
+
+    .scarcity-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .scarcity-alert {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      color: #f87171;
+      text-transform: uppercase;
+    }
+    .scarcity-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #f87171;
+      display: inline-block;
+      animation: blink 1s ease infinite;
+      flex-shrink: 0;
+    }
+    .scarcity-slots {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: -.02em;
+    }
+    .scarcity-slots span {
+      color: #f87171;
+      font-size: 1.4rem;
+    }
+
+    .scarcity-bar-wrap {
+      height: 8px;
+      background: rgba(255,255,255,.06);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .scarcity-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), #f87171);
+      border-radius: 4px;
+      transition: width 1.8s var(--ease-out-expo);
+    }
+    .scarcity-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: .68rem;
+      color: var(--off);
+      margin-bottom: 20px;
+    }
+
+    .scarcity-reason {
+      font-size: .85rem;
+      color: var(--off);
+      line-height: 1.65;
+      font-weight: 300;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .scarcity-timer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .timer-label {
+      font-size: .78rem;
+      color: var(--off);
+      font-weight: 500;
+      max-width: 160px;
+      line-height: 1.4;
+    }
+    .timer-digits {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .timer-unit {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      min-width: 56px;
+      justify-content: center;
+    }
+    .timer-unit span {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -.04em;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .timer-unit small {
+      font-size: .65rem;
+      color: var(--off);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .timer-sep {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--off);
+      padding-bottom: 4px;
+    }
+
+    .btn-scarcity {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--green);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 18px 32px;
+      border-radius: 10px;
+      letter-spacing: .01em;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .btn-scarcity::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.15) 0%, transparent 60%);
+    }
+    .btn-scarcity:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(8,153,178,.4);
+      background: var(--green2);
+    }
+
+    .scarcity-guarantee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: .75rem;
+      color: rgba(155,163,160,.6);
+      text-align: center;
+    }
+
+    /* ============ FORM SUCCESS ============ */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px;
+    }
+    .form-success h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .form-success p { font-size: .875rem; color: var(--off); }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1024px) {
+      .sobre-layout,
+      .steps-layout,
+      .diferencial-inner { grid-template-columns: 1fr; gap: 48px; }
+      .servicos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: flex; }
+
+      section { padding: 72px 20px; }
+      #hero { padding: 120px 20px 72px; }
+
+      .servicos-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+      .clients-grid { grid-template-columns: 1fr; }
+
+      footer { padding: 48px 20px 32px; }
+      .footer-top { flex-direction: column; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-wpp { width: 100%; justify-content: center; }
+      .cta-actions { padding: 0 0; }
+    }
+
+    /* ============ MOBILE NAV ============ */
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      z-index: 850;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      transform: translateX(100%);
+      transition: transform .4s var(--ease-out-expo);
+    }
+    .mobile-nav.open { transform: translateX(0); }
+    .mobile-nav a {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: var(--off);
+      transition: color .2s;
+    }
+    .mobile-nav a:hover { color: var(--white); }
+    .mobile-nav-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--off);
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ FLOATING WPP ============ -->
+<a href="https://wa.me/5586999923244?text=Olá!%20Quero%20escalar%20meu%20negócio%20com%20tráfego%20pago." target="_blank" class="wpp-float" aria-label="WhatsApp">
+  <div class="wpp-pulse"></div>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ============ MOBILE NAV ============ -->
+<div class="mobile-nav" id="mobileNav">
+  <span class="mobile-nav-close" id="mobileClose">✕</span>
+  <a href="#sobre" onclick="closeMobileNav()">Sobre</a>
+  <a href="#clientes" onclick="closeMobileNav()">Clientes</a>
+  <a href="#servicos" onclick="closeMobileNav()">Serviços</a>
+  <a href="#como-funciona" onclick="closeMobileNav()">Como Funciona</a>
+  <a href="#cta" onclick="closeMobileNav()" style="color:var(--green)">Fale Conosco</a>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="logo-dot"></div>
+    Clube <span>Meta</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#como-funciona">Como Funciona</a></li>
+    <li><a href="#cta" class="nav-cta">Fale Conosco →</a></li>
+  </ul>
+  <button class="nav-mobile-btn" id="mobileOpen" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <div class="hero-badge">Estrategistas de Crescimento</div>
+
+  <h1 class="hero-h1">
+    Escalamos seu<br>faturamento com<br><em>tráfego pago</em> e<br>estratégia de verdade.
+  </h1>
+
+  <p class="hero-sub">
+    Enquanto muitos ainda apertam botão, nós construímos<br>
+    <strong>máquinas de vendas previsíveis</strong> que trabalham enquanto você dorme.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#cta" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 7l5 5-5 5M6 7l5 5-5 5"/></svg>
+      Quero escalar meu negócio
+    </a>
+    <a href="https://wa.me/5586999923244?text=Olá!%20Quero%20escalar%20meu%20negócio." target="_blank" class="btn-wpp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Falar no WhatsApp
+    </a>
+  </div>
+
+  <div class="hero-niches">
+    <div class="niche-tag"><div class="dot" style="background:#60a5fa"></div>Concursos Públicos</div>
+    <div class="niche-tag"><div class="dot" style="background:#a78bfa"></div>Médicos & Clínicas</div>
+    <div class="niche-tag"><div class="dot" style="background:#fbbf24"></div>Infoprodutores</div>
+    <div class="niche-tag"><div class="dot" style="background:#22d3ee"></div>Empresas Locais</div>
+    <div class="niche-tag"><div class="dot" style="background:#fb7185"></div>E-commerce</div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">13<span>+</span></div>
+      <div class="stat-label">Clientes ativos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5<span>+</span></div>
+      <div class="stat-label">Nichos de atuação</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">ROI<span> ↑</span></div>
+      <div class="stat-label">Foco em resultado real</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">360<span>°</span></div>
+      <div class="stat-label">Estratégia completa</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span>✦</span> Tráfego Pago</div>
+    <div class="ticker-item"><span>✦</span> Funil de Vendas</div>
+    <div class="ticker-item"><span>✦</span> Escala Previsível</div>
+    <div class="ticker-item"><span>✦</span> Marketing Médico</div>
+    <div class="ticker-item"><span>✦</span> Concursos Públicos</div>
+    <div class="ticker-item"><span>✦</span> Lançamentos</div>
+    <div class="ticker-item"><span>✦</span> ROI Real</div>
+    <div class="ticker-item"><span>✦</span> Estratégia de Crescimento</div>
+    <!-- Duplicate for infinite loop -->
+    <div class="ticker-item"><span>✦</span> Tráfego Pago</div>
+    <div class="ticker-item"><span>✦</span> Funil de Vendas</div>
+    <div class="ticker-item"><span>✦</span> Escala Previsível</div>
+    <div class="ticker-item"><span>✦</span> Marketing Médico</div>
+    <div class="ticker-item"><span>✦</span> Concursos Públicos</div>
+    <div class="ticker-item"><span>✦</span> Lançamentos</div>
+    <div class="ticker-item"><span>✦</span> ROI Real</div>
+    <div class="ticker-item"><span>✦</span> Estratégia de Crescimento</div>
+  </div>
+</div>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre">
+  <div class="sobre-layout">
+    <div class="reveal">
+      <div class="section-label">Sobre a Agência</div>
+      <h2 class="section-title">Não somos<br>gestores de tráfego.<br><em>Somos estrategistas.</em></h2>
+      <p class="section-desc">
+        O Clube Meta é uma agência especializada em tráfego pago e estratégias de vendas.
+        Atuamos diretamente na geração de receita — não em métricas de vaidade que não pagam boleto.
+      </p>
+      <div class="diferenciais">
+        <div class="dif-item">
+          <div class="dif-icon">🎯</div>
+          <div class="dif-text">
+            <h4>Especialistas em Concursos Públicos</h4>
+            <p>Estratégias testadas para infoprodutores e plataformas de preparatórios com foco em escala real.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <div class="dif-icon">🏥</div>
+          <div class="dif-text">
+            <h4>Forte atuação no nicho médico</h4>
+            <p>Especialistas em captação de pacientes para clínicas, especialmente transplante capilar.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <div class="dif-icon">⚡</div>
+          <div class="dif-text">
+            <h4>Estratégias 100% personalizadas</h4>
+            <p>Sem modelo genérico, sem cópia de concorrente. Cada negócio tem sua própria máquina de vendas.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <div class="dif-icon">📈</div>
+          <div class="dif-text">
+            <h4>Foco total em ROI</h4>
+            <p>Cada real investido precisa retornar com lucro. Otimizamos para resultado, não para aparência.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal sobre-visual">
+      <div class="sobre-card-main">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;">
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:.95rem;">Painel de Performance</div>
+            <div style="font-size:.75rem;color:var(--off);margin-top:2px;">Últimos 30 dias</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;background:rgba(8,153,178,.1);border:1px solid rgba(8,153,178,.2);padding:5px 12px;border-radius:20px;font-size:.72rem;font-weight:700;color:var(--green);">
+            <div style="width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;"></div>
+            AO VIVO
+          </div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-item">
+            <div class="metric-info">
+              <div class="metric-name">ROAS Médio</div>
+              <div class="metric-val">4.8×</div>
+            </div>
+            <div class="metric-bar-wrap"><div class="metric-bar" data-width="80"></div></div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-info">
+              <div class="metric-name">CPL Reduzido</div>
+              <div class="metric-val">−62%</div>
+            </div>
+            <div class="metric-bar-wrap"><div class="metric-bar" data-width="62"></div></div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-info">
+              <div class="metric-name">Taxa de Conversão</div>
+              <div class="metric-val">+38%</div>
+            </div>
+            <div class="metric-bar-wrap"><div class="metric-bar" data-width="70"></div></div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-info">
+              <div class="metric-name">Faturamento Escalonado</div>
+              <div class="metric-val">+210%</div>
+            </div>
+            <div class="metric-bar-wrap"><div class="metric-bar" data-width="95"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLIENTES ============ -->
+<section id="clientes" style="padding:100px 40px;">
+  <div class="clientes-header reveal" style="max-width:1200px;margin:0 auto 56px;">
+    <div>
+      <div class="section-label">Clientes</div>
+      <h2 class="section-title">Quem já confia<br>no Clube <em>Meta</em></h2>
+    </div>
+    <p class="section-desc" style="max-width:380px;margin-top:0;">
+      Resultados reais para negócios reais. Cada cliente tem uma estratégia única, construída para seu mercado.
+    </p>
+  </div>
+
+  <div class="clients-grid reveal" style="max-width:1200px;margin:0 auto;">
+
+    <!-- Lorena Canuto: Estética Regenerativa e Harmonização Facial, 44.4K seg, Fortaleza -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-violet">LC</div>
+        <div class="client-nicho-badge nb-violet">Harmonização Facial</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/lorenacanuto/" target="_blank" style="color:inherit;">Lorena Canuto</a></div>
+      <div class="client-desc">Estética Regenerativa e Tecnologias. Formação internacional NY University e IMCAS. +44K seguidores. Fortaleza–CE.</div>
+      <div class="client-result">Captação de pacientes escalada</div>
+    </div>
+
+    <!-- Débora Lee: Especialista em lábios e Harmonização Facial, Grajaú MA e Balsas MA -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-rose">DL</div>
+        <div class="client-nicho-badge nb-rose">Harmonização Facial</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/deboralee.01/" target="_blank" style="color:inherit;">Dra. Débora Lee</a></div>
+      <div class="client-desc">Especialista em lábios 💋 e Harmonização Facial com leveza e segurança. +3.000 pacientes. Grajaú e Balsas–MA.</div>
+      <div class="client-result">Agenda de pacientes preenchida</div>
+    </div>
+
+    <!-- Themas Cursos: 50.7K seg, metodologia completa para concursos -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-blue">TC</div>
+        <div class="client-nicho-badge nb-blue">Concursos</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/themascursos/" target="_blank" style="color:inherit;">Themas Cursos</a></div>
+      <div class="client-desc">Metodologia completa para concursos com planejamento e materiais atualizados. +50,7K seguidores.</div>
+      <div class="client-result">Crescimento de matrículas e alcance</div>
+    </div>
+
+    <!-- Themas Cartórios: 8.7K seg, Extensivo 2026, Método 100% focado em aprovação -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-amber">TC</div>
+        <div class="client-nicho-badge nb-amber">Cartórios</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/themascartorios/" target="_blank" style="color:inherit;">Themas Cartórios</a></div>
+      <div class="client-desc">Método 100% focado em aprovação para concursos de cartório. Extensivo 2026 no ar. +8,7K seguidores.</div>
+      <div class="client-result">Lançamento e captação de alunos</div>
+    </div>
+
+    <!-- Doctor Prado: 13.3K seg, transplante capilar + lipomastia + emagrecimento, Teresina-PI desde 2019 -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-rose">DP</div>
+        <div class="client-nicho-badge nb-rose">Transplante Capilar</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/doctor.prado/" target="_blank" style="color:inherit;">Doctor Prado</a></div>
+      <div class="client-desc">Clínica referência em transplante capilar, lipomastia e protocolos de emagrecimento. Teresina–PI desde 2019. +13,3K seg.</div>
+      <div class="client-result">Agenda de avaliações preenchida</div>
+    </div>
+
+    <!-- Dra. Lindaiane Campos: 22.2K seg, transplante capilar, +1100 cirurgias, Teresina-PI -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-violet">DLC</div>
+        <div class="client-nicho-badge nb-violet">Transplante Capilar</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/dra.lindaiane.campos/" target="_blank" style="color:inherit;">Dra. Lindaiane Campos</a></div>
+      <div class="client-desc">Médica Transplante Capilar. Membro da Sociedade Brasileira de Cirurgia Capilar. +1.100 cirurgias realizadas. Teresina–PI.</div>
+      <div class="client-result">Lista de espera ativa</div>
+    </div>
+
+    <!-- Império das Bombas (iBombas): 60 anos de tradição, bombas hidráulicas, Teresina -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-cyan">IB</div>
+        <div class="client-nicho-badge nb-cyan">Empresa Local</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/imperiodasbombas/" target="_blank" style="color:inherit;">iBombas</a></div>
+      <div class="client-desc">60 anos de tradição. Bombas hidráulicas, irrigação, piscinas e equipamentos. Teresina–PI.</div>
+      <div class="client-result">Geração de leads locais</div>
+    </div>
+
+    <!-- Decorando a Lei Seca: 838K seg, referência na Lei Seca, Vade Mecum de Questões -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-green">DLS</div>
+        <div class="client-nicho-badge nb-green">Concursos</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/decorandoaleiseca/" target="_blank" style="color:inherit;">Decorando a Lei Seca</a></div>
+      <div class="client-desc">Referência nacional no estudo da Lei Seca. Criadores do Vade Mecum de Questões. +838K seguidores.</div>
+      <div class="client-result">Escala de cursos e lançamentos</div>
+    </div>
+
+    <!-- Studio Hair Beauty -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-amber">SHB</div>
+        <div class="client-nicho-badge nb-amber">Beleza</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/studiohair_beauty/" target="_blank" style="color:inherit;">Studio Hair Beauty</a></div>
+      <div class="client-desc">Estúdio de beleza com captação local e crescimento de agendamentos via tráfego pago segmentado.</div>
+      <div class="client-result">+Agendamentos com tráfego local</div>
+    </div>
+
+    <!-- Pimenta Cabra Macho: 91.6K seg, "A pimenta mais forte e saborosa do Brasil! A Pimenta dos Artistas!" -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-rose">PCM</div>
+        <div class="client-nicho-badge nb-rose">Alimentos</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/pimentacabramacho/" target="_blank" style="color:inherit;">Pimenta Cabra Macho</a></div>
+      <div class="client-desc">A pimenta mais forte e saborosa do Brasil — A Pimenta dos Artistas! 🌶️ Atacado e varejo. +91,6K seguidores.</div>
+      <div class="client-result">Escala de vendas nacional</div>
+    </div>
+
+    <!-- Delegado Klipel: 47.5K seg, Ex-PMMG/Delta MG/PCRS, Método 5X -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-blue">GK</div>
+        <div class="client-nicho-badge nb-blue">Carreiras Policiais</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/delegadoklipel/" target="_blank" style="color:inherit;">Delegado Klipel</a></div>
+      <div class="client-desc">Ex-PMMG, Ex-Delegado MG e PCRS. Mentoria de alta performance para Polícias Civis com o Método 5X. +47,5K seg.</div>
+      <div class="client-result">Captação e escala de alunos</div>
+    </div>
+
+    <!-- Portal Mel Cajuína: portal de notícias, jornalismo profissional -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-cyan">PM</div>
+        <div class="client-nicho-badge nb-cyan">Portal de Notícias</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/portalmelcajuina/" target="_blank" style="color:inherit;">Portal Mel Cajuína</a></div>
+      <div class="client-desc">Portal de notícias com jornalismo profissional em prol do interesse público. Estratégia de crescimento digital.</div>
+      <div class="client-result">Audiência e alcance ampliados</div>
+    </div>
+
+    <!-- FT Móveis Planejados -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-green">FT</div>
+        <div class="client-nicho-badge nb-green">Móveis Planejados</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/ftmoveisplanejados/" target="_blank" style="color:inherit;">FT Móveis Planejados</a></div>
+      <div class="client-desc">Empresa de móveis planejados com geração de leads qualificados e aumento de orçamentos via tráfego pago local.</div>
+      <div class="client-result">Leads qualificados e orçamentos</div>
+    </div>
+
+    <!-- Dr. Felipe Duarte: cirurgião plástico, 29.2K seg, Florianópolis -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-violet">FD</div>
+        <div class="client-nicho-badge nb-violet">Cirurgia Plástica</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/drfelipeduarte/" target="_blank" style="color:inherit;">Dr. Felipe Duarte</a></div>
+      <div class="client-desc">Cirurgião Plástico e Professor de Cirurgia Plástica. CRM 10.146. +29,2K seguidores. Florianópolis–SC.</div>
+      <div class="client-result">Captação de pacientes qualificados</div>
+    </div>
+
+    <!-- @olimodasprime: varejo, Teresina / Alto Longá / Altos -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-amber">OL</div>
+        <div class="client-nicho-badge nb-amber">Varejo Local</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/olimodasprime/" target="_blank" style="color:inherit;">Olimo das Prime</a></div>
+      <div class="client-desc">Varejo local com loja física em Alto Longá–PI e atendimento em Teresina e Altos. Campanha de tráfego regional.</div>
+      <div class="client-result">Tráfego local e vendas na loja</div>
+    </div>
+
+    <!-- Caio Souza (@caio.ensina): Procurador do Estado desde os 23, +1500 aprovados, 10.4K seg -->
+    <div class="client-card">
+      <div class="client-card-top">
+        <div class="client-avatar cv-blue">CS</div>
+        <div class="client-nicho-badge nb-blue">Concursos</div>
+      </div>
+      <div class="client-name"><a href="https://www.instagram.com/caio.ensina/" target="_blank" style="color:inherit;">Caio Souza</a></div>
+      <div class="client-desc">Procurador do Estado aprovado aos 23 anos. +1.500 alunos aprovados e 9 anos ensinando a passar em concursos.</div>
+      <div class="client-result">Escala de alunos e lançamentos</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section id="servicos">
+  <div class="servicos-inner">
+    <div class="reveal">
+      <div class="section-label">Serviços</div>
+      <h2 class="section-title">O que fazemos<br>pelo seu <em>negócio</em></h2>
+      <p class="section-desc">
+        Da estratégia à execução. Da criação do funil à escala das campanhas. Você foca no seu produto, nós cuidamos do crescimento.
+      </p>
+    </div>
+    <div class="servicos-grid reveal">
+      <div class="servico-card featured">
+        <span class="serv-icon">🎯</span>
+        <div class="serv-title">Gestão de Tráfego Pago</div>
+        <div class="serv-desc">Meta Ads, Google Ads e outras plataformas. Campanhas otimizadas para ROAS máximo com controle total do investimento.</div>
+        <div class="serv-link">Ver mais →</div>
+      </div>
+      <div class="servico-card">
+        <span class="serv-icon">🧠</span>
+        <div class="serv-title">Estratégias de Vendas</div>
+        <div class="serv-desc">Não basta gerar cliques. Construímos sistemas de conversão que transformam visitantes em compradores.</div>
+        <div class="serv-link">Ver mais →</div>
+      </div>
+      <div class="servico-card">
+        <span class="serv-icon">🔁</span>
+        <div class="serv-title">Estruturação de Funil</div>
+        <div class="serv-desc">Do topo ao fundo. Funis personalizados para cada tipo de negócio, produto e público-alvo.</div>
+        <div class="serv-link">Ver mais →</div>
+      </div>
+      <div class="servico-card">
+        <span class="serv-icon">🚀</span>
+        <div class="serv-title">Lançamentos</div>
+        <div class="serv-desc">Planejamento e execução de lançamentos de infoprodutos com máxima penetração de mercado.</div>
+        <div class="serv-link">Ver mais →</div>
+      </div>
+      <div class="servico-card">
+        <span class="serv-icon">📊</span>
+        <div class="serv-title">Escala de Negócios Digitais</div>
+        <div class="serv-desc">Para quem já vende e quer multiplicar. Escalamos com método, dados e otimização contínua.</div>
+        <div class="serv-link">Ver mais →</div>
+      </div>
+      <div class="servico-card">
+        <span class="serv-icon">🏥</span>
+        <div class="serv-title">Captação para Clínicas</div>
+        <div class="serv-desc">Especialidade em marketing médico: pacientes qualificados, agenda cheia e posicionamento de autoridade.</div>
+        <div class="serv-link">Ver mais →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA ============ -->
+<section id="como-funciona" style="padding:100px 40px;">
+  <div id="como-funciona" style="max-width:1200px;margin:0 auto;">
+    <div class="reveal">
+      <div class="section-label">Processo</div>
+      <h2 class="section-title">Como vamos<br><em>escalar</em> o seu negócio</h2>
+    </div>
+    <div class="steps-layout reveal">
+      <div class="steps-list">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Diagnóstico do Negócio</h3>
+            <p>Mapeamos todo o seu processo de vendas, mercado, concorrência e oportunidades. Sem atalhos — entendemos o negócio antes de anunciar.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Estratégia Personalizada</h3>
+            <p>Construímos um plano de crescimento sob medida: canais certos, orçamento otimizado e funil alinhado ao seu público.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Implementação do Tráfego</h3>
+            <p>Campanhas criadas, configuradas e ativadas com rastreamento completo. Nada sai sem aprovação e alinhamento.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h3>Otimização e Escala</h3>
+            <p>Análise constante, testes A/B e ajustes semanais. Quando algo funciona, escalamos. Quando não, corrigimos rápido.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps-visual">
+        <div class="chart-title">Crescimento Acumulado</div>
+        <div class="chart-sub">Evolução típica nos primeiros 4 meses</div>
+        <div class="bar-chart" id="barChart">
+          <div class="bar-col">
+            <div class="bar-fill" style="height:20%" data-height="20"></div>
+            <div class="bar-label">Mês 1</div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-fill" style="height:40%" data-height="40"></div>
+            <div class="bar-label">Mês 2</div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-fill" style="height:65%" data-height="65"></div>
+            <div class="bar-label">Mês 3</div>
+          </div>
+          <div class="bar-col">
+            <div class="bar-fill highlight" style="height:100%" data-height="100" data-val="+210%"></div>
+            <div class="bar-label">Mês 4</div>
+          </div>
+        </div>
+        <div class="chart-note">
+          <strong>Média dos nossos clientes:</strong> crescimento de 210% no faturamento nos primeiros 4 meses com estratégia estruturada e tráfego pago consistente.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAL ============ -->
+<section id="diferencial">
+  <div class="diferencial-inner">
+    <div class="reveal">
+      <div class="section-label">Por que a Clube Meta</div>
+      <div class="big-statement">
+        Você não<br>precisa de mais<br><em>tráfego.</em>
+      </div>
+      <p style="margin-top:24px;color:var(--off);font-size:1.05rem;line-height:1.75;font-weight:300;max-width:480px;">
+        Precisa de estratégia. De estrutura. De um funil que converta. De posicionamento que venda antes mesmo do clique.
+        <br><br>
+        Isso é o que fazemos.
+      </p>
+    </div>
+
+    <div class="reveal" style="display:flex;flex-direction:column;gap:20px;">
+      <div style="margin-bottom:8px;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">O que a maioria faz</div>
+        <div class="problem-list">
+          <div class="problem-item">
+            <div class="problem-x">✕</div>
+            <div class="problem-text">
+              <h4>Anunciam sem estratégia</h4>
+              <p>Só impulsionam post, sem funil, sem oferta, sem direcionamento.</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-x">✕</div>
+            <div class="problem-text">
+              <h4>Sem estrutura de conversão</h4>
+              <p>Geram cliques mas não vendem. Página ruim, oferta fraca, copy inexistente.</p>
+            </div>
+          </div>
+          <div class="problem-item">
+            <div class="problem-x">✕</div>
+            <div class="problem-text">
+              <h4>Posicionamento genérico</h4>
+              <p>Não se diferenciam. São mais um no feed, invisíveis para o cliente certo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:8px;">
+        <div style="font-family:var(--font-display);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:16px;">O que a Clube Meta faz</div>
+        <div class="solution-list">
+          <div class="solution-item">
+            <div class="solution-check">✓</div>
+            <div class="solution-text">
+              <h4>Estratégia antes de investir</h4>
+              <p>Diagnóstico completo, definição de oferta e posicionamento antes de qualquer campanha.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <div class="solution-check">✓</div>
+            <div class="solution-text">
+              <h4>Funil completo estruturado</h4>
+              <p>Do primeiro clique até o fechamento. Cada etapa pensada para maximizar conversão.</p>
+            </div>
+          </div>
+          <div class="solution-item">
+            <div class="solution-check">✓</div>
+            <div class="solution-text">
+              <h4>Posicionamento que vende</h4>
+              <p>Diferenciação clara, autoridade construída e mensagem que conecta com quem vai comprar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="justify-content:center;margin-bottom:24px;">Vamos Conversar</div>
+    <h2 class="cta-h2">
+      Chega de testar.<br>
+      Hora de <em>escalar</em>.
+    </h2>
+    <p class="cta-desc">
+      Se você quer parar de jogar dinheiro em anúncio sem retorno e começar a construir uma máquina de vendas previsível — fale com a gente.
+    </p>
+
+    <div class="cta-actions">
+
+      <!-- ESCASSEZ -->
+      <div class="scarcity-box reveal">
+        <div class="scarcity-top">
+          <div class="scarcity-alert">
+            <span class="scarcity-dot"></span>
+            ATENÇÃO — VAGAS LIMITADAS
+          </div>
+          <div class="scarcity-slots">
+            <span id="slotsLeft">3</span> vagas restantes este mês
+          </div>
+        </div>
+
+        <div class="scarcity-bar-wrap">
+          <div class="scarcity-bar-fill" id="scarcityBar"></div>
+        </div>
+        <div class="scarcity-bar-label">
+          <span>0 vagas</span><span>10 vagas</span>
+        </div>
+
+        <p class="scarcity-reason">
+          Trabalhamos com poucos clientes por vez para garantir atenção total e resultados reais. Quando as vagas fecham, a fila de espera pode levar semanas.
+        </p>
+
+        <div class="scarcity-timer-row">
+          <div class="timer-label">Oferta de diagnóstico gratuito expira em:</div>
+          <div class="timer-digits">
+            <div class="timer-unit"><span id="th">00</span><small>h</small></div>
+            <div class="timer-sep">:</div>
+            <div class="timer-unit"><span id="tm">00</span><small>m</small></div>
+            <div class="timer-sep">:</div>
+            <div class="timer-unit"><span id="ts">00</span><small>s</small></div>
+          </div>
+        </div>
+
+        <a href="https://form.jotform.com/220315203384040" target="_blank" class="btn-scarcity">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M13 7l5 5-5 5M6 7l5 5-5 5"/></svg>
+          Garantir minha vaga agora
+        </a>
+
+        <div class="scarcity-guarantee">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Diagnóstico 100% gratuito · Sem compromisso · Resposta em até 2h úteis
+        </div>
+      </div>
+
+      <div class="cta-divider">ou fale direto pelo WhatsApp</div>
+
+      <a href="https://wa.me/5586999923244?text=Olá!%20Vim%20pelo%20site%20e%20quero%20escalar%20meu%20negócio%20com%20a%20Clube%20Meta." target="_blank" class="btn-wpp-big">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Falar no WhatsApp agora
+      </a>
+
+      <p style="font-size:.75rem;color:rgba(155,163,160,.4);margin-top:8px;">Atendimento de segunda a sexta, das 8h às 18h</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-dot"></div>
+          Clube <span>Meta</span>
+        </div>
+        <p class="footer-tagline">
+          Agência de tráfego pago e estratégias de crescimento. Não somos gestores de tráfego — somos estrategistas de resultado.
+        </p>
+      </div>
+      <div class="footer-links-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#sobre">Sobre a Agência</a></li>
+          <li><a href="#clientes">Nossos Clientes</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Especialidades</h4>
+        <ul>
+          <li><a href="#">Tráfego Pago</a></li>
+          <li><a href="#">Marketing Médico</a></li>
+          <li><a href="#">Concursos Públicos</a></li>
+          <li><a href="#">Lançamentos</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5586999923244" target="_blank">WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/agenciaclubemeta/" target="_blank">Instagram</a></li>
+          <li><a href="mailto:clubemetaoficial@gmail.com">E-mail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 <span class="footer-green">Clube Meta</span>. Todos os direitos reservados.</div>
+      <div class="footer-copy">Agência de Tráfego Pago · Estratégias de Crescimento · ROI Real</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ SCRIPTS ============ -->
+<!-- Meta Pixel placeholder -->
+<script>
+  // <!-- Meta Pixel Code - Inserir ID aqui -->
+  // !function(f,b,e,v,n,t,s){...}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  // fbq('init', 'SEU_PIXEL_ID');
+  // fbq('track', 'PageView');
+
+  // Google Tag Manager placeholder
+  // (function(w,d,s,l,i){...})(window,document,'script','dataLayer','GTM-XXXXXXX');
+</script>
+
+<script>
+  // ---- NAV SCROLL ----
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ---- MOBILE NAV ----
+  document.getElementById('mobileOpen').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('mobileClose').addEventListener('click', closeMobileNav);
+  function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ---- REVEAL ON SCROLL ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ---- METRIC BARS ANIMATE ----
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.metric-bar').forEach(bar => {
+          const w = bar.getAttribute('data-width');
+          setTimeout(() => { bar.style.width = w + '%'; }, 300);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.sobre-card-main').forEach(el => barObserver.observe(el));
+
+  // ---- COUNTDOWN TIMER ----
+  // Set deadline: end of today + random hours to feel real
+  const key = 'clubemeta_deadline';
+  let deadline = localStorage.getItem(key);
+  if (!deadline) {
+    // Random between 4h and 11h59m from now
+    const ms = Date.now() + (4 * 3600 + Math.floor(Math.random() * 7 * 3600 + Math.random() * 3540)) * 1000;
+    deadline = ms;
+    localStorage.setItem(key, ms);
+  }
+  deadline = parseInt(deadline);
+
+  function updateTimer() {
+    const diff = deadline - Date.now();
+    if (diff <= 0) {
+      // Reset for next session
+      localStorage.removeItem(key);
+      document.getElementById('th').textContent = '00';
+      document.getElementById('tm').textContent = '00';
+      document.getElementById('ts').textContent = '00';
+      return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('th').textContent = String(h).padStart(2,'0');
+    document.getElementById('tm').textContent = String(m).padStart(2,'0');
+    document.getElementById('ts').textContent = String(s).padStart(2,'0');
+  }
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  // ---- SCARCITY BAR ----
+  const scarcityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // 7 out of 10 slots taken = 70%
+        setTimeout(() => {
+          document.getElementById('scarcityBar').style.width = '70%';
+        }, 400);
+        scarcityObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const scarcityEl = document.querySelector('.scarcity-box');
+  if (scarcityEl) scarcityObserver.observe(scarcityEl);
+
+  // ---- SMOOTH ANCHOR SCROLL ----
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
