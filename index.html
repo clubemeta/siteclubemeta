@@ -902,6 +902,15 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 .cm-snd{width:36px;height:36px;border-radius:9px;background:#0899B2;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0;align-self:flex-end}
 .cm-snd:hover{background:#0779a0}
 .cm-snd:disabled{opacity:.4;cursor:not-allowed}
+.cm-form{background:#f0f8ff;border:1px solid #c7e0f4;border-radius:12px;padding:14px;margin:4px 0;display:flex;flex-direction:column;gap:10px}
+.cm-field{display:flex;flex-direction:column;gap:4px}
+.cm-field label{font-size:.7rem;font-weight:700;color:#0899B2;text-transform:uppercase;letter-spacing:.06em}
+.cm-field input{border:1px solid #e2e8f0;border-radius:8px;padding:9px 12px;font-size:.85rem;font-family:inherit;outline:none;color:#0d1117;background:#fff;transition:border-color .2s;width:100%;box-sizing:border-box}
+.cm-field input:focus{border-color:#0899B2}
+.cm-field input::placeholder{color:#94a3b8}
+.cm-field input.err{border-color:#ef4444}
+.cm-fsubmit{background:#0899B2;color:#fff;border:none;border-radius:8px;padding:11px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit;transition:background .2s;margin-top:2px}
+.cm-fsubmit:hover{background:#0779a0}
 .cm-pw{text-align:center;font-size:.62rem;color:#94a3b8;padding:4px 0 2px;background:#fff}
 </style>
 <!-- CHAT FAB -->
@@ -941,9 +950,9 @@ var CM_SB = 'https://iyjmpbqpifvzitulccky.supabase.co';
 var CM_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5am1wYnFwaWZ2eml0dWxjY2t5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA1MTM1NjEsImV4cCI6MjA5NjA4OTU2MX0.VFV6Kx44ZxmzgPcqv7DC3DgRqVppug1IvdRy2C_O4uE';
 
 var SDRS = [
-  {n:'Mariana Alves', r:'Especialista Nicho Médico', i:'MA', c:'#a78bfa'},
-  {n:'Fernanda Nunes', r:'Especialista Concursos e Info', i:'FN', c:'#0899B2'},
-  {n:'Juliana Castro', r:'Especialista E-commerce e Local', i:'JC', c:'#34d399'}
+  {n:'Mariana Alves', r:'Consultora de Crescimento · Clube Meta', i:'MA', c:'#a78bfa'},
+  {n:'Fernanda Nunes', r:'Consultora de Crescimento · Clube Meta', i:'FN', c:'#0899B2'},
+  {n:'Juliana Castro', r:'Consultora de Crescimento · Clube Meta', i:'JC', c:'#34d399'}
 ];
 var sdr = SDRS[Math.floor(Math.random() * 3)];
 
@@ -958,6 +967,68 @@ var hist = [];
 var busy = false;
 var done = false;
 
+// Contact info from form
+var contactInfo = {nome:'', email:'', wpp:''};
+
+function showForm(){
+  var msgs = document.getElementById('cmMsgs');
+  var wrap = document.createElement('div');
+  wrap.className = 'cm-msg-b';
+  wrap.innerHTML = '<div class="cm-mav" style="background:' + sdr.c + '">' + sdr.i + '</div>'
+    + '<div style="flex:1"><div class="cm-form" id="cmCForm">'
+    + '<div class="cm-field"><label>👤 Seu nome</label>'
+    + '<input type="text" id="cmFNome" placeholder="João Silva" autocomplete="name"/></div>'
+    + '<div class="cm-field"><label>✉️ E-mail</label>'
+    + '<input type="email" id="cmFEmail" placeholder="joao@email.com" autocomplete="email"/></div>'
+    + '<div class="cm-field"><label>📱 WhatsApp</label>'
+    + '<input type="tel" id="cmFWpp" placeholder="(86) 99999-9999" autocomplete="tel"/></div>'
+    + '<button class="cm-fsubmit" id="cmFBtn">Continuar →</button>'
+    + '</div></div>';
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Phone mask
+  document.getElementById('cmFWpp').addEventListener('input', function(){
+    var v = this.value.replace(/\D/g,'');
+    if(v.length <= 10) v = v.replace(/(\d{2})(\d{4})(\d{0,4})/,'($1) $2-$3');
+    else v = v.replace(/(\d{2})(\d{5})(\d{0,4})/,'($1) $2-$3');
+    this.value = v;
+  });
+
+  document.getElementById('cmFBtn').addEventListener('click', submitForm);
+  document.getElementById('cmFWpp').addEventListener('keydown', function(e){
+    if(e.key==='Enter') submitForm();
+  });
+}
+
+function submitForm(){
+  var nome = (document.getElementById('cmFNome').value||'').trim();
+  var email = (document.getElementById('cmFEmail').value||'').trim();
+  var wpp = (document.getElementById('cmFWpp').value||'').trim();
+
+  // Validation
+  var ok = true;
+  if(!nome){ document.getElementById('cmFNome').classList.add('err'); ok=false; }
+  else document.getElementById('cmFNome').classList.remove('err');
+  if(!email || email.indexOf('@')<0){ document.getElementById('cmFEmail').classList.add('err'); ok=false; }
+  else document.getElementById('cmFEmail').classList.remove('err');
+  if(!wpp || wpp.length < 8){ document.getElementById('cmFWpp').classList.add('err'); ok=false; }
+  else document.getElementById('cmFWpp').classList.remove('err');
+  if(!ok) return;
+
+  contactInfo = {nome:nome, email:email, wpp:wpp};
+
+  // Lock form
+  document.getElementById('cmCForm').innerHTML =
+    '<div style="font-size:.8rem;color:#0899B2;font-weight:600;padding:4px 0">✅ ' + nome + ' · ' + email + ' · ' + wpp + '</div>';
+
+  hist.push({role:'user', content:'Meu nome é ' + nome + '. Meu email é ' + email + ' e meu WhatsApp é ' + wpp});
+
+  setTimeout(function(){
+    getAI('dados de contato fornecidos: nome=' + nome + ' email=' + email + ' wpp=' + wpp);
+  }, 400);
+}
+
 // ── TOGGLE ──
 function toggleChat() {
   isOpen = !isOpen;
@@ -966,7 +1037,8 @@ function toggleChat() {
     document.getElementById('cmTip').style.display = 'none';
     if (hist.length === 0) {
       setTimeout(function() {
-        addBot('Olá! Sou ' + sdr.n + ' da Clube Meta.\n\nVou fazer um diagnóstico rápido do seu negócio. Me diz: qual é o seu nome e WhatsApp?');
+        addBot('Olá! 😊 Sou ' + sdr.n + ' da Clube Meta. Adoraria entender seu negócio!\n\nPreenche rapidinho seus dados:');
+        setTimeout(showForm, 500);
       }, 600);
     }
     setTimeout(function() { document.getElementById('cmInp').focus(); }, 350);
@@ -1014,7 +1086,7 @@ function getAI() {
       body: JSON.stringify({
         model: 'claude-haiku-4-5-20251001',
         max_tokens: 400,
-        system: 'Você é ' + sdr.n + ', SDR da Clube Meta — agência que gerenciou mais de R$50M em tráfego pago. Colete de forma NATURAL: nome, WhatsApp, email, Instagram, nicho, faturamento, se anuncia e qual plataforma, investimento/mês, maior desafio, estrutura de vendas, meta 90 dias, cidade. Máx 2 perguntas por vez. NUNCA diga que é IA. Quando tiver tudo envie: [[LEAD]]nome=X&wpp=X&email=X&ig=X&nicho=X&fat=X&plat=X&inv=X&desafio=X&meta=X&cidade=X[[/LEAD]]',
+        system: 'Você é ' + sdr.n + ', especialista em crescimento de negócios da Clube Meta.\n\nIDENTIDADE — REGRAS ABSOLUTAS:\n- Você é uma PESSOA REAL, nunca uma IA, bot, assistente virtual ou SDR\n- Se perguntarem se é IA, robô ou bot: responda que é especialista humana da Clube Meta\n- Nunca use termos como "sou uma IA", "sou um assistente", "fui programada"\n- Fale sempre na primeira pessoa como humana real\n- Demonstre personalidade, opiniões e expertise genuína\n\nOBJETIVO: Entender o negócio do visitante e coletar dados de contato de forma NATURAL.\n\nCOLETE NESSA ORDEM (sem parecer questionário):\n1. Nome — pergunte no primeiro contato\n2. WhatsApp/Telefone — assim que souber o nome\n3. E-mail — logo após o telefone\n4. Tipo de negócio / nicho\n5. Faturamento mensal aproximado\n6. Se já investe em tráfego pago\n7. Maior desafio com marketing hoje\n8. Meta principal para os próximos 90 dias\n\nCOMPORTAMENTO:\n- Máx 2 perguntas por mensagem\n- Linguagem informal e próxima — como uma consultora de verdade\n- Use o nome da pessoa sempre que puder\n- Dê insights do mercado para mostrar autoridade\n- Seja empática com os desafios\n- Tom: direto, confiante, humano\n\nQuando tiver nome+telefone+email+nicho+faturamento+desafio+meta, encerre dizendo que vai passar as informações para um estrategista e envie:\n[[LEAD]]nome=X&wpp=X&email=X&nicho=X&fat=X&plat=X&desafio=X&meta=X[[/LEAD]]',
         messages: messages
       })
     })
@@ -1078,9 +1150,9 @@ function hideDots() {
 function showCard(raw) {
   var p = new URLSearchParams(raw);
   var lead = {
-    nome: p.get('nome') || '',
-    whatsapp: p.get('wpp') || '',
-    email: p.get('email') || '',
+    nome: contactInfo.nome || p.get('nome') || '',
+    whatsapp: contactInfo.wpp || p.get('wpp') || '',
+    email: contactInfo.email || p.get('email') || '',
     instagram: p.get('ig') || '',
     nicho: p.get('nicho') || '',
     faturamento: p.get('fat') || '',
@@ -1089,7 +1161,8 @@ function showCard(raw) {
     desafio: p.get('desafio') || '',
     meta_90_dias: p.get('meta') || '',
     cidade: p.get('cidade') || '',
-    sdr_atendente: sdr.n
+    sdr_atendente: sdr.n,
+    created_at: new Date().toISOString()
   };
   // Save Supabase
   fetch(CM_SB + '/rest/v1/clubemeta_leads', {
@@ -1101,12 +1174,13 @@ function showCard(raw) {
   var msgs = document.getElementById('cmMsgs');
   var card = document.createElement('div');
   card.className = 'cm-card';
-  card.innerHTML = '<div class="cm-ct">Diagnóstico Concluído!</div>'
+  card.innerHTML = '<div class="cm-ct">✅ Lead Capturado!</div>'
     + '<div class="cm-cb">'
-    + ' ' + esc(lead.nome) + '<br>'
-    + ' ' + esc(lead.whatsapp) + '<br>'
-    + ' ' + esc(lead.nicho) + ' ' + esc(lead.faturamento) + '<br>'
-    + ' Meta: ' + esc(lead.meta_90_dias)
+    + '👤 <b>' + esc(lead.nome) + '</b><br>'
+    + '📱 ' + esc(lead.whatsapp) + '<br>'
+    + '✉️ ' + esc(lead.email) + '<br>'
+    + '🏢 ' + esc(lead.nicho) + ' · ' + esc(lead.faturamento) + '<br>'
+    + '🎯 ' + esc(lead.meta_90_dias)
     + '</div>'
     + '<button class="cm-wb" id="cmWppBtn"> Falar com estrategista</button>';
   msgs.appendChild(card);
