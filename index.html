@@ -940,7 +940,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </div>
-  <div class="cm-pw">⚡ Clube Meta · SDR com IA</div>
+  <div class="cm-pw">🔒 Seus dados estão seguros</div>
 </div>
 
 <script>
@@ -1024,6 +1024,11 @@ function submitForm(){
 
   hist.push({role:'user', content:'Meu nome é ' + nome + '. Meu email é ' + email + ' e meu WhatsApp é ' + wpp});
 
+  // Re-enable chat input
+  document.getElementById('cmInp').disabled = false;
+  document.getElementById('cmInp').placeholder = 'Digite sua mensagem...';
+  document.getElementById('cmSnd').disabled = false;
+
   setTimeout(function(){
     getAI('dados de contato fornecidos: nome=' + nome + ' email=' + email + ' wpp=' + wpp);
   }, 400);
@@ -1035,6 +1040,10 @@ function toggleChat() {
   if (isOpen) {
     document.getElementById('cmPanel').classList.add('on');
     document.getElementById('cmTip').style.display = 'none';
+    // Disable input until form is submitted
+    document.getElementById('cmInp').disabled = true;
+    document.getElementById('cmInp').placeholder = 'Preencha seus dados acima ⬆️';
+    document.getElementById('cmSnd').disabled = true;
     if (hist.length === 0) {
       setTimeout(function() {
         addBot('Olá! 😊 Sou ' + sdr.n + ' da Clube Meta. Adoraria entender seu negócio!\n\nPreenche rapidinho seus dados:');
@@ -1064,6 +1073,12 @@ document.getElementById('cmSnd').addEventListener('click', sendMsg);
 // ── SEND ──
 function sendMsg() {
   if (busy || done) return;
+  // Block if form not submitted yet
+  if (!contactInfo.nome) {
+    document.getElementById('cmInp').placeholder = 'Preencha seus dados acima primeiro ⬆️';
+    setTimeout(function(){ document.getElementById('cmInp').placeholder = 'Digite sua mensagem...'; }, 2000);
+    return;
+  }
   var v = document.getElementById('cmInp').value.trim();
   if (!v) return;
   document.getElementById('cmInp').value = '';
